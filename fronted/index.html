@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdSpot - Find What You Need</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">AdSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#jobs">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#post-ad">Post Ad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Find Exactly What You're Looking For</h1>
+                    <p class="lead mb-4">Browse thousands of listings for homes, jobs, services and more.</p>
+                    
+                    <!-- Search Form -->
+                    <div class="search-box p-3 bg-white rounded shadow-sm">
+                        <form class="row g-3">
+                            <div class="col-md-5">
+                                <select class="form-select" id="category">
+                                    <option selected>All Categories</option>
+                                    <option>Real Estate</option>
+                                    <option>Jobs</option>
+                                    <option>Services</option>
+                                    <option>Vehicles</option>
+                                    <option>Electronics</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" placeholder="What are you looking for?">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://via.placeholder.com/600x400" alt="People browsing ads" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sponsored Ad Banner -->
+    <div class="ad-banner py-3 bg-light border-top border-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-0 bg-primary bg-opacity-10">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <span class="badge bg-warning mb-2">Sponsored</span>
+                                    <h5 class="mb-0">Premium Membership - 50% OFF Today Only!</h5>
+                                    <p class="mb-0 text-muted">Get featured listings and priority placement.</p>
+                                </div>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Browse by Category</h2>
+            <div class="row g-4">
+                <!-- Real Estate Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-house-door fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Real Estate</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Homes</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Apartments</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Rooms</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Commercial</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jobs Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-briefcase fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Jobs</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Full-time</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Part-time</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Remote</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Freelance</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-tools fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Services</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Home Services</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Professional</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Health & Beauty</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hotels Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-building fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Hotels</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Luxury</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Budget</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Resorts</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Vacation Rentals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vehicles Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-car-front fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Vehicles</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Cars</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Motorcycles</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Commercial</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Parts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Electronics Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-laptop fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Electronics</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Phones</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Computers</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">TV & Audio</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Gaming</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Furniture Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-lamp fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Furniture</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Living Room</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Bedroom</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Kitchen</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Office</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fashion Category -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card category-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="category-icon mb-3">
+                                <i class="bi bi-bag fs-1 text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Fashion</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none text-muted">Men's</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Women's</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Kids</a></li>
+                                <li><a href="#" class="text-decoration-none text-muted">Accessories</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Categories Ad Banner -->
+            <div class="mt-5">
+                <div class="card border-0 bg-warning bg-opacity-10">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <span class="badge bg-warning mb-2">Sponsored</span>
+                                <h4 class="mb-2">Sell Your Items Faster!</h4>
+                                <p class="mb-0">Upgrade to a premium listing and get 5x more visibility.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <a href="#" class="btn btn-warning">Upgrade Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section id="jobs" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Latest Job Opportunities</h2>
+                <a href="#" class="btn btn-outline-primary">View All Jobs</a>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Job 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-info">Full-time</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Remote</span>
+                            </div>
+                            <h5 class="card-title">Senior Software Developer</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> Tech Innovations Inc.</p>
+                            <p class="card-text text-muted">Leading tech company seeking an experienced software developer with 5+ years of experience in React and Node.js.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$85,000 - $120,000</span>
+                                <span class="text-muted small">Posted 5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">Part-time</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> New York</span>
+                            </div>
+                            <h5 class="card-title">Marketing Assistant</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> Global Marketing Group</p>
+                            <p class="card-text text-muted">Seeking a creative marketing assistant to help with social media campaigns, content creation, and market research.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$25 - $30/hour</span>
+                                <span class="text-muted small">Posted 2 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-warning">Contract</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Chicago</span>
+                            </div>
+                            <h5 class="card-title">Financial Analyst</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> Midwest Financial Services</p>
+                            <p class="card-text text-muted">Experienced financial analyst needed for a 6-month contract with possibility of extension. CFA preferred.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$75,000/year</span>
+                                <span class="text-muted small">Posted 1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-info">Full-time</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> San Francisco</span>
+                            </div>
+                            <h5 class="card-title">UX/UI Designer</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> Creative Solutions</p>
+                            <p class="card-text text-muted">Seeking a talented UX/UI designer with 3+ years of experience to join our growing product team.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$90,000 - $110,000</span>
+                                <span class="text-muted small">Posted 3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-success">Part-time</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Boston</span>
+                            </div>
+                            <h5 class="card-title">Customer Service Representative</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> East Coast Retail</p>
+                            <p class="card-text text-muted">Looking for friendly customer service representatives for our weekend shifts. Previous retail experience a plus.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$18 - $22/hour</span>
+                                <span class="text-muted small">Posted 4 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card job-card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-danger">Internship</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Miami</span>
+                            </div>
+                            <h5 class="card-title">Marketing Intern</h5>
+                            <p class="company-name text-primary mb-2"><i class="bi bi-building"></i> South Beach Media</p>
+                            <p class="card-text text-muted">Summer internship opportunity for marketing students. Learn digital marketing, SEO, and social media strategy.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span class="text-primary fw-bold">$15/hour</span>
+                                <span class="text-muted small">Posted 1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-grid">
+                            <button class="btn btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Jobs Ad Banner -->
+            <div class="mt-5">
+                <div class="card border-0 bg-info bg-opacity-10">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 text-center mb-3 mb-md-0">
+                                <img src="https://via.placeholder.com/100" class="img-fluid rounded-circle" alt="Employer logo">
+                            </div>
+                            <div class="col-md-7">
+                                <span class="badge bg-info mb-2">Featured Employer</span>
+                                <h4 class="mb-2">Tech Innovations Inc. is Hiring!</h4>
+                                <p class="mb-0">Multiple positions open for developers, designers, and product managers.</p>
+                            </div>
+                            <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                                <a href="#" class="btn btn-info text-white">View Jobs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Featured Listings</h2>
+                <a href="#" class="btn btn-outline-primary">View All</a>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Listing 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card listing-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Luxury Apartment">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-success position-absolute top-0 start-0 m-3">For Sale</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-primary fw-bold">$450,000</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> New York</span>
+                            </div>
+                            <h5 class="card-title">Luxury Apartment with City View</h5>
+                            <p class="card-text text-muted">Modern 3-bedroom apartment with stunning city views, fully renovated with high-end finishes.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span><i class="bi bi-house-door"></i> 3 Beds</span>
+                                <span><i class="bi bi-droplet"></i> 2 Baths</span>
+                                <span><i class="bi bi-rulers"></i> 1,500 sqft</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">Posted 2 days ago</span>
+                            <button class="btn btn-sm btn-outline-primary">Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card listing-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Software Developer Job">
+                            <span class="badge bg-info position-absolute top-0 end-0 m-3">Full-time</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-primary fw-bold">$85,000 - $120,000</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Remote</span>
+                            </div>
+                            <h5 class="card-title">Senior Software Developer</h5>
+                            <p class="card-text text-muted">Leading tech company seeking an experienced software developer with 5+ years of experience in React and Node.js.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span><i class="bi bi-briefcase"></i> Tech</span>
+                                <span><i class="bi bi-clock"></i> Full-time</span>
+                                <span><i class="bi bi-laptop"></i> Remote</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">Posted 5 days ago</span>
+                            <button class="btn btn-sm btn-outline-primary">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listing 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card listing-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Luxury Hotel">
+                            <span class="badge bg-warning position-absolute top-0 end-0 m-3">5-Star</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-primary fw-bold">$250/night</span>
+                                <span class="text-muted"><i class="bi bi-geo-alt"></i> Miami</span>
+                            </div>
+                            <h5 class="card-title">Oceanfront Luxury Resort</h5>
+                            <p class="card-text text-muted">Experience ultimate luxury at this 5-star oceanfront resort with private beach access, spa, and fine dining.</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <span><i class="bi bi-star-fill text-warning"></i> 4.9/5</span>
+                                <span><i class="bi bi-wifi"></i> Free WiFi</span>
+                                <span><i class="bi bi-water"></i> Pool</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">200+ bookings this month</span>
+                            <button class="btn btn-sm btn-outline-primary">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Listings Ad Banner -->
+            <div class="mt-5">
+                <div class="card border-0 bg-success bg-opacity-10">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <span class="badge bg-success mb-2">Sponsored</span>
+                                <h4 class="mb-2">List Your Property Today!</h4>
+                                <p class="mb-0">Get your property in front of thousands of potential buyers and renters.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <a href="#" class="btn btn-success">Post Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog & News Section -->
+    <section id="blog" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Latest News & Articles</h2>
+                <a href="#" class="btn btn-outline-primary">View All Posts</a>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Blog Post 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card blog-card h-100 border-0 shadow-sm">
+                        <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Blog post image">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-primary">Real Estate</span>
+                                <span class="text-muted small">March 15, 2025</span>
+                            </div>
+                            <h5 class="card-title">10 Tips for First-Time Home Buyers in 2025</h5>
+                            <p class="card-text text-muted">Navigate the challenging real estate market with these expert tips designed specifically for first-time buyers.</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/30" class="rounded-circle me-2" alt="Author">
+                                <span class="text-muted small">By Sarah Johnson</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-link text-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card blog-card h-100 border-0 shadow-sm">
+                        <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Blog post image">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-info">Career</span>
+                                <span class="text-muted small">March 10, 2025</span>
+                            </div>
+                            <h5 class="card-title">The Future of Remote Work: Trends to Watch</h5>
+                            <p class="card-text text-muted">As remote work becomes the new normal, discover the emerging trends that will shape the future of how we work.</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/30" class="rounded-circle me-2" alt="Author">
+                                <span class="text-muted small">By Michael Chen</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-link text-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card blog-card h-100 border-0 shadow-sm">
+                        <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Blog post image">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-warning">Travel</span>
+                                <span class="text-muted small">March 5, 2025</span>
+                            </div>
+                            <h5 class="card-title">5 Luxury Hotels That Won't Break the Bank</h5>
+                            <p class="card-text text-muted">Experience luxury accommodations without the premium price tag at these stunning yet affordable hotels around the world.</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/30" class="rounded-circle me-2" alt="Author">
+                                <span class="text-muted small">By Jessica Martinez</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-link text-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blog Ad Banner -->
+            <div class="mt-5">
+                <div class="card border-0 bg-primary bg-opacity-10">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center mb-3 mb-md-0">
+                                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Newsletter">
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="mb-2">Subscribe to Our Newsletter</h4>
+                                <p class="mb-0">Get the latest news, tips, and exclusive offers delivered directly to your inbox.</p>
+                            </div>
+                            <div class="col-md-3 mt-3 mt-md-0">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" placeholder="Your email">
+                                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">How It Works</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-4">
+                                <i class="bi bi-search fs-1 text-primary"></i>
+                            </div>
+                            <h4>Find What You Need</h4>
+                            <p class="text-muted">Browse thousands of listings across multiple categories to find exactly what you're looking for.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-4">
+                                <i class="bi bi-chat-dots fs-1 text-primary"></i>
+                            </div>
+                            <h4>Connect Directly</h4>
+                            <p class="text-muted">Contact sellers or service providers directly through our secure messaging system.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-4">
+                                <i class="bi bi-check-circle fs-1 text-primary"></i>
+                            </div>
+                            <h4>Complete Your Transaction</h4>
+                            <p class="text-muted">Finalize your deal with confidence using our secure transaction process and buyer protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="post-ad" class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="fw-bold">Ready to Post Your Ad?</h2>
+                    <p class="lead mb-0">Join thousands of users who find what they need on AdSpot every day.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button class="btn btn-light btn-lg px-4">Post an Ad Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Users Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <p class="card-text mb-4">"I found my dream apartment in just two days using AdSpot. The filters made it easy to narrow down exactly what I was looking for."</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User">
+                                <div>
+                                    <h6 class="mb-0">Sarah Johnson</h6>
+                                    <small class="text-muted">New York, NY</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <p class="card-text mb-4">"As a small business owner, AdSpot has been invaluable for finding new clients. The response rate is much higher than other platforms I've tried."</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User">
+                                <div>
+                                    <h6 class="mb-0">Michael Rodriguez</h6>
+                                    <small class="text-muted">Miami, FL</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <p class="card-text mb-4">"I sold my car within 48 hours of posting it on AdSpot. The process was simple and I got a fair price. Highly recommended!"</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User">
+                                <div>
+                                    <h6 class="mb-0">Jennifer Lee</h6>
+                                    <small class="text-muted">Chicago, IL</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AdSpot</h5>
+                    <p class="text-muted">The #1 marketplace for all your needs. Find or sell homes, jobs, services, and more.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Real Estate</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Jobs</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Vehicles</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold mb-3">Newsletter</h6>
+                    <p class="text-muted">Subscribe to our newsletter for the latest listings and updates.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 AdSpot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="bi bi-heart-fill text-danger"></i> for our users</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?php
+
+namespace App\Http\Controllers\Backend\News;
+
+use App\Http\Controllers\Backend\Common\BackendController;
+use App\Http\Requests\News\NewsCreateRequest;
+use App\Repositories\News\NewsInterface;
+use Illuminate\Http\Request;
+
+class NewsController extends BackendController
+{
+    protected NewsInterface $dr;
+
+    public function __construct(NewsInterface $dr)
+    {
+        parent::__construct();
+        $this->dr = $dr;
+    }
+
+    public function index(Request $request)
+    {
+        $this->checkAuthorization($request->user(), 'news_list');
+        $postsData = $this->dr->getParentData();
+        $this->data('postsData', $postsData);
+        return view($this->pagePath . 'news.index', $this->data);
+    }
+
+    public function create()
+    {
+        $this->checkAuthorization(auth()->user(), 'news_create');
+        $this->data('categoryData', $this->dr->getParentCategory());
+        $this->data('blogParent', $this->dr->getParentData());
+        return view($this->pagePath . 'news.create', $this->data);
+
+    }
+
+    public function store(NewsCreateRequest $requests)
+    {
+        $this->checkAuthorization(auth()->user(), 'news_create');
+        $data = $requests->all();
+        if ($data) {
+            $this->dr->insert($data);
+            return redirect()->route('manage-news.index')->with('success', 'data was inserted');
+        } else {
+            return redirect()->back()->with('error', 'data was not inserted');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $this->checkAuthorization(auth()->user(), 'news_show');
+        $this->data('postsData', $this->dr->getById($id));
+        return view($this->pagePath . 'news.show', $this->data);
+    }
+
+
+    public function edit(string $id)
+    {
+        $this->checkAuthorization(auth()->user(), 'news_edit');
+        $this->data('blogData', $this->dr->getById($id));
+        $this->data('categoryData', $this->dr->getParentCategory());
+        $this->data("parentId", $this->dr->getSelectedParentId($id));
+        $this->data('selectedCategoryId', $this->dr->getSelectedCategoryId($id));
+        $this->data('blogParent', $this->dr->getParentData());
+        return view($this->pagePath . 'news.update', $this->data);
+    }
+
+
+    public function update(Request $request, string $id)
+    {
+        $this->checkAuthorization($request->user(), 'news_edit');
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required|unique:news,slug,' . $id,
+            'parent_id' => function ($attribute, $value, $fail) use ($id) {
+                  if ($value == $id) {
+                    $fail('The news cannot be its own parent.');
+                  }
+            },
+            'category_id' => 'required',
+        ]);
+        if ($this->dr->update($request->all(), $id)) {
+            return redirect()->route('manage-news.index')->with('success', 'data was updated');
+        } else {
+            return redirect()->back()->with('error', 'data was not updated');
+        }
+    }
+
+
+    public function destroy(string $id)
+    {
+        $this->checkAuthorization(auth()->user(), 'news_delete');
+
+        try {
+        if ($this->dr->delete($id)) {
+            return redirect()->route('manage-news.index')->with('success', 'data was deleted');
+        } else {
+            return redirect()->back()->with('error', 'data was not deleted');
+        }
+    } catch(\Illuminate\Database\QueryException $e){
+        return redirect()->back()->with('error', 'Cannot delete this news as it is linked to other child news.');
+    }
+    }
+
+
+}

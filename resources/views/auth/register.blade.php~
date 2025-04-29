@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link href="{{url('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+<div class="container-fluid full-height d-flex align-items-center justify-content-center">
+    <div class="row">
+         <!-- Right Panel - Registration Form -->
+        <div class="col-md-12 d-flex align-items-center justify-content-center py-5">
+            <div class="card border-0 shadow-sm p-4" style="min-width: 400px;">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Create Your Account</h2>
+
+                    <form action="{{route('register')}}" method="post">
+                        @csrf
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" placeholder="Enter first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter email" required>
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+
+                        <!-- Account Type -->
+                        <div class="form-group mb-2">
+                            <label for="account_type_id">Select Types
+                                <span class="text-danger">*
+                                        @error('account_type_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </span>
+                            </label>
+                            <select class="form-control" id="account_type_id" name="account_type_id">
+                                <option value="">Select Account Type</option>
+                                @foreach($accountTypeData as $accountType)
+                                    <option value="{{ $accountType->id }}"
+                                        {{ old('account_type_id') == $accountType->id ? 'selected' : '' }}
+                                    >{{ $accountType->name }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Create password" required>
+                            <div class="form-text">
+                                Password must be at least 8 characters long and include numbers and special characters.
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" placeholder="Confirm password" required>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#"
+                                                                                                            class="text-primary">Privacy
+                                    Policy</a>
+                            </label>
+                        </div>
+
+                        <button class="btn btn-primary w-100 mb-3">Create Account</button>
+
+                        <div class="text-center mt-4">
+                            Already have an account? <a href="#" class="text-primary text-decoration-none">Sign in</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

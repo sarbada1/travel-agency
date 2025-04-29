@@ -1,0 +1,94 @@
+@extends('backend.master.main')
+@section('content')
+    <main id="main" class="main">
+        <section class="section dashboard">
+            <div class="card py-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>
+                                <i class="bi bi-newspaper"></i> Blogs List
+                                <a href="{{route('manage-blog.create')}}"
+                                   class="btn btn-primary btn-sm float-end">
+                                    <i class="bi bi-plus-circle"></i> Add Blog</a>
+                            </h2>
+                        </div>
+
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @include('backend.layouts.message')
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <table class="table datatable">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($postsData->isEmpty())
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                We could not find any data
+                                                <br>
+                                                <a href="{{route('manage-blog.index')}}">Refresh
+                                                    page</a>
+
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @foreach($postsData as $posts)
+                                        <tr>
+                                            <td>
+                                                {{$posts->title}}
+                                            </td>
+                                            <td>
+                                                {{$posts->category->name}}
+                                            </td>
+                                            <td>
+                                                @if($posts->image)
+                                                    <img src="{{url($posts->image)}}" alt=""
+                                                         style="width: 50px;">
+                                                @else
+                                                    <span class="badge bg-danger"> No Image</span>
+                                                @endif
+                                            </td>
+
+                                            <td style="width: 12%;">
+                                                <a href="{{route('manage-blog.show',$posts->id)}}"
+                                                   class="btn btn-primary btn-sm" title="Show Blog">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </a>
+                                                <a href="{{route('manage-blog.edit',$posts->id)}}"
+                                                   class="btn btn-success btn-sm">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        @if($posts->child)
+                                        @include('backend.pages.blog.manageChild', ['childDataTable' => $posts->child])
+
+                                        @endif
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+@endsection
+
+

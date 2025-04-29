@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+
+Route::get('/', '\App\Http\Controllers\Frontend\ApplicationController@index')->name('index');
+
+Route::group(['prefix' => 'blogs'], function () {
+    Route::get('/{slug?}', '\App\Http\Controllers\Frontend\ApplicationController@blogs')->name('blogs');
+});
+Route::group(['prefix' => 'news'], function () {
+    Route::get('/{slug?}', '\App\Http\Controllers\Frontend\NewsController@index')->name('news');
+});
+
+Route::group(['prefix' => 'real-estate'], function () {
+    Route::get('/{slug?}', '\App\Http\Controllers\Frontend\ApplicationController@realEstate')->name('real-estate');
+});
+
+Route::group(['prefix' => 'hotels'], function () {
+    Route::get('/{slug?}', '\App\Http\Controllers\Frontend\HotelsController@realEstate')->name('real-estate');
+});
+
+Route::get('/contact', '\App\Http\Controllers\Frontend\ApplicationController@contact')->name('contact');
+Route::get('/faq', '\App\Http\Controllers\Frontend\ApplicationController@faq')->name('faq');
+
+
+Route::group(['prefix' => 'jobs'], function () {
+    Route::get('/{slug?}', '\App\Http\Controllers\Frontend\ApplicationController@job')->name('jobs');
+    Route::any('apply/{slug?}', '\App\Http\Controllers\Frontend\ApplicationController@apply')->name('apply');
+});

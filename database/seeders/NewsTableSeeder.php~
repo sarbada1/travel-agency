@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\News\News;
+
+class NewsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+
+
+//              'name' => 'Market Updates',
+//
+//                'name' => 'Industry Trends',
+//                'slug' => 'industry-trends',
+//                'name' => 'Company News',
+//
+//                'name' => 'Press Releases',
+//
+//                'name' => 'Events',
+//
+//                'name' => 'Announcements',
+
+
+    }
+}

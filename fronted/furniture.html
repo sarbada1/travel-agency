@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture - AdSpot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">AdSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="real-estate.html">Real Estate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vehicles.html">Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobs.html">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Furniture Header -->
+    <header class="bg-primary py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white">
+                    <h1 class="fw-bold mb-3">Find Perfect Furniture</h1>
+                    <p class="lead mb-4">Browse thousands of furniture pieces for your home, office, or outdoor space from trusted sellers.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h5 class="mb-3">Quick Search</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Furniture category">
+                                            <option selected>All Categories</option>
+                                            <option value="1">Living Room</option>
+                                            <option value="2">Bedroom</option>
+                                            <option value="3">Dining Room</option>
+                                            <option value="4">Office</option>
+                                            <option value="5">Outdoor</option>
+                                            <option value="6">Kitchen</option>
+                                            <option value="7">Bathroom</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Furniture type">
+                                            <option selected>All Types</option>
+                                            <option value="1">Sofas & Couches</option>
+                                            <option value="2">Chairs</option>
+                                            <option value="3">Tables</option>
+                                            <option value="4">Beds</option>
+                                            <option value="5">Dressers</option>
+                                            <option value="6">Cabinets</option>
+                                            <option value="7">Bookshelves</option>
+                                            <option value="8">Desks</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Condition">
+                                            <option selected>All Conditions</option>
+                                            <option value="1">New</option>
+                                            <option value="2">Like New</option>
+                                            <option value="3">Good</option>
+                                            <option value="4">Fair</option>
+                                            <option value="5">For Parts</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Material">
+                                            <option selected>All Materials</option>
+                                            <option value="1">Wood</option>
+                                            <option value="2">Metal</option>
+                                            <option value="3">Glass</option>
+                                            <option value="4">Leather</option>
+                                            <option value="5">Fabric</option>
+                                            <option value="6">Plastic</option>
+                                            <option value="7">Wicker/Rattan</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Min Price">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Max Price">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="Location (City, State, or ZIP)">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100">Search Furniture</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Furniture -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0">Featured Furniture</h2>
+                <a href="#" class="text-decoration-none">View All <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="row g-4">
+                <!-- Featured Furniture 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Modern Sectional Sofa">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-success position-absolute top-0 start-0 m-3">New</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Modern Sectional Sofa</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary">Living Room</span>
+                            </div>
+                            <p class="text-primary fw-bold fs-5 mb-3">$1,299</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Gray</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-rulers me-1"></i> L-Shaped</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Fabric</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Contemporary L-shaped sectional sofa with chaise lounge, plush cushions, and durable fabric upholstery.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small"><i class="bi bi-geo-alt"></i> San Francisco, CA</span>
+                                <span class="text-muted small">Posted 2 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Furniture 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Solid Wood Dining Table">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Solid Wood Dining Table</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary">Dining Room</span>
+                            </div>
+                            <p class="text-primary fw-bold fs-5 mb-3">$849</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Like New</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Walnut</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-rulers me-1"></i> 72" x 36"</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Solid Wood</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Handcrafted solid walnut dining table with natural finish, seats 6-8 people, mid-century modern design.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small"><i class="bi bi-geo-alt"></i> Portland, OR</span>
+                                <span class="text-muted small">Posted 3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Furniture 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="King Size Bed Frame">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-3">Sale</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">King Size Bed Frame</h5>
+                                <span class="badge bg-primary bg-opacity-10 text-primary">Bedroom</span>
+                            </div>
+                            <p class="text-primary fw-bold fs-5 mb-3">$699 <span class="text-decoration-line-through text-muted fs-6">$899</span></p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Black</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-rulers me-1"></i> King</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Metal/Wood</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Modern king size platform bed frame with headboard, black metal frame with walnut accents, no box spring needed.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small"><i class="bi bi-geo-alt"></i> Austin, TX</span>
+                                <span class="text-muted small">Posted 1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="card border-0 shadow-sm sticky-lg-top" style="top: 100px; z-index: 1;">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">Filters</h5>
+                                <button class="btn btn-sm btn-outline-secondary">Reset</button>
+                            </div>
+                            
+                            <!-- Category Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Category</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="livingRoomCheck">
+                                    <label class="form-check-label" for="livingRoomCheck">
+                                        Living Room
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="bedroomCheck">
+                                    <label class="form-check-label" for="bedroomCheck">
+                                        Bedroom
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="diningRoomCheck">
+                                    <label class="form-check-label" for="diningRoomCheck">
+                                        Dining Room
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="officeCheck">
+                                    <label class="form-check-label" for="officeCheck">
+                                        Office
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="outdoorCheck">
+                                    <label class="form-check-label" for="outdoorCheck">
+                                        Outdoor
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="kitchenCheck">
+                                    <label class="form-check-label" for="kitchenCheck">
+                                        Kitchen
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="bathroomCheck">
+                                    <label class="form-check-label" for="bathroomCheck">
+                                        Bathroom
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Price Range Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Price Range</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="text" class="form-control form-control-sm me-2" placeholder="Min">
+                                    <span>to</span>
+                                    <input type="text" class="form-control form-control-sm ms-2" placeholder="Max">
+                                </div>
+                                <input type="range" class="form-range" min="0" max="5000" step="100" id="priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <span class="small text-muted">$0</span>
+                                    <span class="small text-muted">$5,000+</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Condition Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Condition</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="newCheck">
+                                    <label class="form-check-label" for="newCheck">
+                                        New
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="likeNewCheck">
+                                    <label class="form-check-label" for="likeNewCheck">
+                                        Like New
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="goodCheck">
+                                    <label class="form-check-label" for="goodCheck">
+                                        Good
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="fairCheck">
+                                    <label class="form-check-label" for="fairCheck">
+                                        Fair
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="partsCheck">
+                                    <label class="form-check-label" for="partsCheck">
+                                        For Parts
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Material Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Material</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="woodCheck">
+                                    <label class="form-check-label" for="woodCheck">
+                                        Wood
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="metalCheck">
+                                    <label class="form-check-label" for="metalCheck">
+                                        Metal
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="glassCheck">
+                                    <label class="form-check-label" for="glassCheck">
+                                        Glass
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="leatherCheck">
+                                    <label class="form-check-label" for="leatherCheck">
+                                        Leather
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="fabricCheck">
+                                    <label class="form-check-label" for="fabricCheck">
+                                        Fabric
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="plasticCheck">
+                                    <label class="form-check-label" for="plasticCheck">
+                                        Plastic
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="wickerCheck">
+                                    <label class="form-check-label" for="wickerCheck">
+                                        Wicker/Rattan
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Style Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Style</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="modernCheck">
+                                    <label class="form-check-label" for="modernCheck">
+                                        Modern
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="traditionalCheck">
+                                    <label class="form-check-label" for="traditionalCheck">
+                                        Traditional
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="contemporaryCheck">
+                                    <label class="form-check-label" for="contemporaryCheck">
+                                        Contemporary
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="midcenturyCheck">
+                                    <label class="form-check-label" for="midcenturyCheck">
+                                        Mid-Century
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="industrialCheck">
+                                    <label class="form-check-label" for="industrialCheck">
+                                        Industrial
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="rusticCheck">
+                                    <label class="form-check-label" for="rusticCheck">
+                                        Rustic
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="scandinavianCheck">
+                                    <label class="form-check-label" for="scandinavianCheck">
+                                        Scandinavian
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Color Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Color</h6>
+                                <div class="d-flex flex-wrap">
+                                    <div class="color-option me-2 mb-2" style="background-color: #000000;" title="Black"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #FFFFFF; border: 1px solid #ddd;" title="White"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #964B00;" title="Brown"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #808080;" title="Gray"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #0000FF;" title="Blue"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #FF0000;" title="Red"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #008000;" title="Green"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #FFC0CB;" title="Pink"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #FFFF00;" title="Yellow"></div>
+                                    <div class="color-option me-2 mb-2" style="background-color: #FFA500;" title="Orange"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Seller Type Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Seller Type</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="individualCheck">
+                                    <label class="form-check-label" for="individualCheck">
+                                        Individual
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="businessCheck">
+                                    <label class="form-check-label" for="businessCheck">
+                                        Business
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Delivery Options Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Delivery Options</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="pickupCheck">
+                                    <label class="form-check-label" for="pickupCheck">
+                                        Local Pickup
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="deliveryCheck">
+                                    <label class="form-check-label" for="deliveryCheck">
+                                        Local Delivery
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="shippingCheck">
+                                    <label class="form-check-label" for="shippingCheck">
+                                        Shipping Available
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Apply Filters Button -->
+                            <div class="d-grid">
+                                <button class="btn btn-primary">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Furniture Listings -->
+                <div class="col-lg-9">
+                    <!-- Sorting and View Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="mb-1">All Furniture</h4>
+                            <p class="text-muted mb-0">Showing 1-12 of 856 results</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <select class="form-select form-select-sm">
+                                    <option selected>Sort by: Featured</option>
+                                    <option value="1">Price: Low to High</option>
+                                    <option value="2">Price: High to Low</option>
+                                    <option value="3">Newest First</option>
+                                    <option value="4">Oldest First</option>
+                                    <option value="5">Most Popular</option>
+                                </select>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="View options">
+                                <button type="button" class="  aria-label="View options">
+                                <button type="button" class="btn btn-outline-secondary btn-sm active">
+                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Furniture Listings Grid -->
+                    <div class="row g-4">
+                        <!-- Furniture 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Leather Recliner">
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-3">New</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Leather Recliner</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Living Room</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$599</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Brown</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Leather</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Genuine leather recliner with power adjustments, USB charging port, and cup holders.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Chicago, IL</span>
+                                        <span class="text-muted small">Posted 1 day ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Coffee Table">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Modern Coffee Table</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Living Room</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$249</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Like New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> White</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Wood/Glass</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Minimalist coffee table with white lacquer finish, tempered glass top, and storage shelf.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Seattle, WA</span>
+                                        <span class="text-muted small">Posted 3 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Bookshelf">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Industrial Bookshelf</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Office</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$179</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Good</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Black</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Metal/Wood</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">5-tier industrial bookshelf with metal frame and rustic wood shelves, perfect for home office.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Denver, CO</span>
+                                        <span class="text-muted small">Posted 5 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Dresser">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">6-Drawer Dresser</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Bedroom</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$329</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Good</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> White</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Wood</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Classic 6-drawer dresser with smooth gliding drawers, white finish, and brushed nickel hardware.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Boston, MA</span>
+                                        <span class="text-muted small">Posted 1 week ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Dining Chairs">
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-3">Sale</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Set of 4 Dining Chairs</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Dining Room</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$399 <span class="text-decoration-line-through text-muted fs-6">$499</span></p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Gray</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Fabric</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Set of 4 upholstered dining chairs with solid wood legs, gray fabric, and ergonomic design.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Miami, FL</span>
+                                        <span class="text-muted small">Posted 4 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Patio Set">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">5-Piece Patio Set</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Outdoor</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$749</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Like New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Black</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Metal/Glass</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">5-piece outdoor patio set with table, 4 chairs, weather-resistant materials, and tempered glass top.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Phoenix, AZ</span>
+                                        <span class="text-muted small">Posted 2 weeks ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 7 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Office Desk">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Standing Desk</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Office</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$429</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Black</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Metal/Wood</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Electric height-adjustable standing desk with memory settings, cable management, and spacious work surface.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Austin, TX</span>
+                                        <span class="text-muted small">Posted 6 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 8 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Nightstand">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Pair of Nightstands</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Bedroom</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$199</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Good</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Walnut</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Wood</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Set of 2 matching nightstands with 2 drawers each, walnut finish, and brushed metal handles.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Portland, OR</span>
+                                        <span class="text-muted small">Posted 1 week ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Furniture 9 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="TV Stand">
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-3">New</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Entertainment Center</h5>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">Living Room</span>
+                                    </div>
+                                    <p class="text-primary fw-bold fs-5 mb-3">$379</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> New</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> White</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-box-seam me-1"></i> Wood</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Modern entertainment center with TV mount, storage cabinets, shelves, and cable management system.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-geo-alt"></i> Atlanta, GA</span>
+                                        <span class="text-muted small">Posted 3 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="furniture-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-3">Ready to sell your furniture?</h2>
+                    <p class="lead mb-0">List your furniture on AdSpot and reach thousands of potential buyers in your area.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="#" class="btn btn-light btn-lg px-4">Post Your Furniture</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AdSpot</h5>
+                    <p class="text-muted">The #1 marketplace for all your needs. Find or sell homes, jobs, services, and more.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Real Estate</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Vehicles</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Furniture</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Jobs</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about-us.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-muted text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> 123 Main Street, New York, NY 10001</li>
+                        <li class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> (123) 456-7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> info@adspot.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 AdSpot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="bi bi-heart-fill text-danger"></i> for our users</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom CSS for color options -->
+    <style>
+        .color-option {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>

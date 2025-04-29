@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - AdSpot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">AdSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="real-estate.html">Real Estate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vehicles.html">Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobs.html">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="hotels.html">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hotels Header -->
+    <header class="bg-primary py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white">
+                    <h1 class="fw-bold mb-3">Find Your Perfect Stay</h1>
+                    <p class="lead mb-4">Discover thousands of hotels, resorts, and vacation rentals at the best prices.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h5 class="mb-3">Search Hotels</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-geo-alt"></i></span>
+                                            <input type="text" class="form-control" placeholder="Destination, city, or hotel name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+                                            <input type="text" class="form-control" placeholder="Check-in date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+                                            <input type="text" class="form-control" placeholder="Check-out date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+                                            <select class="form-select" aria-label="Adults">
+                                                <option selected>Adults</option>
+                                                <option value="1">1 Adult</option>
+                                                <option value="2">2 Adults</option>
+                                                <option value="3">3 Adults</option>
+                                                <option value="4">4 Adults</option>
+                                                <option value="5">5+ Adults</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-people"></i></span>
+                                            <select class="form-select" aria-label="Children">
+                                                <option selected>Children</option>
+                                                <option value="0">0 Children</option>
+                                                <option value="1">1 Child</option>
+                                                <option value="2">2 Children</option>
+                                                <option value="3">3 Children</option>
+                                                <option value="4">4+ Children</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-house-door"></i></span>
+                                            <select class="form-select" aria-label="Rooms">
+                                                <option selected>Rooms</option>
+                                                <option value="1">1 Room</option>
+                                                <option value="2">2 Rooms</option>
+                                                <option value="3">3 Rooms</option>
+                                                <option value="4">4+ Rooms</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-star"></i></span>
+                                            <select class="form-select" aria-label="Star rating">
+                                                <option selected>Star Rating</option>
+                                                <option value="5">5 Stars</option>
+                                                <option value="4">4+ Stars</option>
+                                                <option value="3">3+ Stars</option>
+                                                <option value="2">2+ Stars</option>
+                                                <option value="1">1+ Star</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100">Search Hotels</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Hotels -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0">Featured Hotels</h2>
+                <a href="#" class="text-decoration-none">View All <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="row g-4">
+                <!-- Featured Hotel 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Luxury Resort Hotel">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-success position-absolute top-0 start-0 m-3">20% OFF</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Grand Luxury Resort & Spa</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Miami Beach, FL</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-p-circle me-1"></i> Free Parking</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Pool</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Luxury beachfront resort with spa, multiple pools, fine dining, and ocean view rooms.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-decoration-line-through text-muted me-2">$499</span>
+                                    <span class="text-primary fw-bold fs-5">$399</span>
+                                    <span class="text-muted">/night</span>
+                                </div>
+                                <span class="badge bg-success">9.2 Exceptional</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Hotel 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Boutique Hotel">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Urban Boutique Hotel</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> San Francisco, CA</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-bicycle me-1"></i> Bike Rental</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-shop me-1"></i> City Center</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Stylish boutique hotel in downtown with rooftop bar, artisanal breakfast, and designer rooms.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-primary fw-bold fs-5">$289</span>
+                                    <span class="text-muted">/night</span>
+                                </div>
+                                <span class="badge bg-success">8.9 Excellent</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Hotel 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Mountain Resort">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-3">Hot Deal</span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Mountain View Lodge</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Aspen, CO</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-p-circle me-1"></i> Free Parking</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-fire me-1"></i> Fireplace</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-snow me-1"></i> Ski-in/Ski-out</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Cozy mountain lodge with stunning views, ski-in/ski-out access, hot tubs, and rustic dining.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-decoration-line-through text-muted me-2">$349</span>
+                                    <span class="text-primary fw-bold fs-5">$279</span>
+                                    <span class="text-muted">/night</span>
+                                </div>
+                                <span class="badge bg-success">9.0 Excellent</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="card border-0 shadow-sm sticky-lg-top" style="top: 100px; z-index: 1;">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">Filters</h5>
+                                <button class="btn btn-sm btn-outline-secondary">Reset</button>
+                            </div>
+                            
+                            <!-- Price Range Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Price Range (per night)</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="text" class="form-control form-control-sm me-2" placeholder="Min">
+                                    <span>to</span>
+                                    <input type="text" class="form-control form-control-sm ms-2" placeholder="Max">
+                                </div>
+                                <input type="range" class="form-range" min="0" max="1000" step="50" id="priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <span class="small text-muted">$0</span>
+                                    <span class="small text-muted">$1,000+</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Star Rating Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Star Rating</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="star5Check">
+                                    <label class="form-check-label" for="star5Check">
+                                        <span class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </span>
+                                        <span class="ms-2">5 Stars</span>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="star4Check">
+                                    <label class="form-check-label" for="star4Check">
+                                        <span class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                        <span class="ms-2">4 Stars</span>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="star3Check">
+                                    <label class="form-check-label" for="star3Check">
+                                        <span class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                        <span class="ms-2">3 Stars</span>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="star2Check">
+                                    <label class="form-check-label" for="star2Check">
+                                        <span class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                        <span class="ms-2">2 Stars</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="star1Check">
+                                    <label class="form-check-label" for="star1Check">
+                                        <span class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </span>
+                                        <span class="ms-2">1 Star</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Guest Rating Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Guest Rating</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="excellent">
+                                    <label class="form-check-label" for="excellent">
+                                        Excellent (9+)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="veryGood">
+                                    <label class="form-check-label" for="veryGood">
+                                        Very Good (8+)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="good">
+                                    <label class="form-check-label" for="good">
+                                        Good (7+)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="fair">
+                                    <label class="form-check-label" for="fair">
+                                        Fair (6+)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Property Type Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Property Type</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="hotelCheck">
+                                    <label class="form-check-label" for="hotelCheck">
+                                        Hotels
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="resortCheck">
+                                    <label class="form-check-label" for="resortCheck">
+                                        Resorts
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="apartmentCheck">
+                                    <label class="form-check-label" for="apartmentCheck">
+                                        Apartments
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="villaCheck">
+                                    <label class="form-check-label" for="villaCheck">
+                                        Villas
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="hostelCheck">
+                                    <label class="form-check-label" for="hostelCheck">
+                                        Hostels
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="bnbCheck">
+                                    <label class="form-check-label" for="bnbCheck">
+                                        B&Bs
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Amenities Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Amenities</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="wifiCheck">
+                                    <label class="form-check-label" for="wifiCheck">
+                                        Free WiFi
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="parkingCheck">
+                                    <label class="form-check-label" for="parkingCheck">
+                                        Free Parking
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="breakfastCheck">
+                                    <label class="form-check-label" for="breakfastCheck">
+                                        Breakfast Included
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="poolCheck">
+                                    <label class="form-check-label" for="poolCheck">
+                                        Swimming Pool
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="spaCheck">
+                                    <label class="form-check-label" for="spaCheck">
+                                        Spa
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="gymCheck">
+                                    <label class="form-check-label" for="gymCheck">
+                                        Fitness Center
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="restaurantCheck">
+                                    <label class="form-check-label" for="restaurantCheck">
+                                        Restaurant
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="petCheck">
+                                    <label class="form-check-label" for="petCheck">
+                                        Pet Friendly
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="airportCheck">
+                                    <label class="form-check-label" for="airportCheck">
+                                        Airport Shuttle
+                                    </label>
+                                </div>
+                                <a href="#" class="btn btn-link btn-sm p-0 mt-2">Show more amenities</a>
+                            </div>
+                            
+                            <!-- Neighborhood Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Neighborhood</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="downtownCheck">
+                                    <label class="form-check-label" for="downtownCheck">
+                                        Downtown
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="beachCheck">
+                                    <label class="form-check-label" for="beachCheck">
+                                        Beachfront
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="airportAreaCheck">
+                                    <label class="form-check-label" for="airportAreaCheck">
+                                        Airport Area
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="businessDistrictCheck">
+                                    <label class="form-check-label" for="businessDistrictCheck">
+                                        Business District
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="suburbanCheck">
+                                    <label class="form-check-label" for="suburbanCheck">
+                                        Suburban
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Apply Filters Button -->
+                            <div class="d-grid">
+                                <button class="btn btn-primary">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hotel Listings -->
+                <div class="col-lg-9">
+                    <!-- Sorting and View Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="mb-1">All Hotels</h4>
+                            <p class="text-muted mb-0">Showing 1-12 of 256 results</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <select class="form-select form-select-sm">
+                                    <option selected>Sort by: Recommended</option>
+                                    <option value="1">Price: Low to High</option>
+                                    <option value="2">Price: High to Low</option>
+                                    <option value="3">Guest Rating</option>
+                                    <option value="4">Star Rating</option>
+                                    <option value="5">Distance from Center</option>
+                                </select>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="View options">
+                                <button type="button" class="btn btn-outline-secondary btn-sm active">
+                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-map"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hotel Listings Grid -->
+                    <div class="row g-4">
+                        <!-- Hotel 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="City Center Hotel">
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-3">Breakfast Included</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">City Center Hotel</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Chicago, IL</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-shop me-1"></i> City Center</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Modern hotel in downtown with restaurant, fitness center, and business facilities.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$189</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">8.7 Very Good</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hotel 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Riverside Inn">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Riverside Inn & Suites</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Portland, OR</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-p-circle me-1"></i> Free Parking</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> River View</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Charming riverside hotel with scenic views, complimentary breakfast, and cozy rooms.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$129</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">7.9 Good</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hotel 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Beachside Resort">
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-3">Hot Deal</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Beachside Resort & Spa</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> San Diego, CA</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-p-circle me-1"></i> Free Parking</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Pool</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-heart me-1"></i> Spa</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Oceanfront resort with private beach access, multiple pools, spa services, and water sports.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-decoration-line-through text-muted me-2">$329</span>
+                                            <span class="text-primary fw-bold fs-5">$259</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">8.8 Excellent</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hotel 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Historic Hotel">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Historic Grand Hotel</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Boston, MA</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-shop me-1"></i> Historic District</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Elegant historic hotel with classic architecture, fine dining restaurant, and luxurious rooms.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$249</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">9.1 Exceptional</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hotel 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Budget Inn">
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-3">Best Value</span>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Budget Comfort Inn</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Denver, CO</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-p-circle me-1"></i> Free Parking</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Affordable hotel with clean rooms, continental breakfast, and convenient location near attractions.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$79</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">7.5 Good</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hotel 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Luxury Suites">
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Executive Luxury Suites</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> New York, NY</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Breakfast</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-heart me-1"></i> Spa</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-shop me-1"></i> City Center</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">All-suite luxury hotel with kitchenettes, concierge service, and premium amenities in Manhattan.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$399</span>
+                                            <span class="text-muted">/night</span>
+                                        </div>
+                                        <span class="badge bg-success">9.4 Exceptional</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="hotel-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-3">Own a hotel or vacation rental?</h2>
+                    <p class="lead mb-0">List your property on AdSpot and reach thousands of potential guests.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="#" class="btn btn-light btn-lg px-4">List Your Property</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AdSpot</h5>
+                    <p class="text-muted">The #1 marketplace for all your needs. Find or sell homes, jobs, services, and more.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Real Estate</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Vehicles</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Hotels</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Jobs</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about-us.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-muted text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> 123 Main Street, New York, NY 10001</li>
+                        <li class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> (123) 456-7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> info@adspot.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 AdSpot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="bi bi-heart-fill text-danger"></i> for our users</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

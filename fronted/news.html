@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - AdSpot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">AdSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="real-estate.html">Real Estate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobs.html">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Header -->
+    <header class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="fw-bold mb-3">Latest News</h1>
+                    <p class="lead mb-4">Stay updated with the latest market trends, industry developments, and company announcements.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h5 class="mb-3 text-dark">Search News</h5>
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for news...">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- News Categories -->
+    <section class="py-4 border-bottom bg-light">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center">
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1 active">All News</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Market Updates</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Industry Trends</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Company News</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Press Releases</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Events</a>
+                <a href="#" class="btn btn-outline-primary rounded-pill m-1">Announcements</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breaking News -->
+    <section class="py-4 bg-danger text-white">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <span class="badge bg-white text-danger me-3 px-3 py-2 fw-bold">BREAKING</span>
+                <div class="breaking-news-ticker">
+                    <h5 class="mb-0">AdSpot Launches New Mobile App with Enhanced Features for Buyers and Sellers</h5>
+                </div>
+                <a href="news-details.html" class="btn btn-sm btn-outline-light ms-auto">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured News -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="https://via.placeholder.com/600x400" class="img-fluid rounded-start h-100 object-fit-cover" alt="Featured news image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body p-4 d-flex flex-column h-100">
+                                    <div>
+                                        <span class="badge bg-primary mb-2">Featured</span>
+                                        <h2 class="card-title h3">AdSpot Expands to 10 New International Markets</h2>
+                                        <p class="card-text text-muted">The company's global expansion continues with the launch of localized platforms in key European and Asian markets, bringing the total to 25 countries worldwide.</p>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div>
+                                                <p class="mb-0 text-muted small"><i class="bi bi-calendar3 me-2"></i> March 20, 2025</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-muted small"><i class="bi bi-eye me-1"></i> 1,245 views</span>
+                                            <a href="news-details.html" class="btn btn-primary">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Articles -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <h3 class="mb-4">Latest News</h3>
+                    
+                    <!-- News 1 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-success me-2">Market Updates</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 18, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">Housing Market Shows Strong Recovery in Q1 2025</a>
+                                    </h4>
+                                    <p class="card-text">New data reveals a 15% increase in home sales compared to the previous quarter, with urban markets leading the recovery.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 856 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 2 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-info me-2">Industry Trends</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 15, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">AI-Powered Job Matching Transforms Recruitment Industry</a>
+                                    </h4>
+                                    <p class="card-text">New technologies are revolutionizing how employers find talent, with AI algorithms improving match quality by up to 40%.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 723 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 3 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-warning text-dark me-2">Company News</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 12, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">AdSpot Announces Partnership with Major Financial Institution</a>
+                                    </h4>
+                                    <p class="card-text">Strategic alliance will provide users with integrated financing options and pre-approval for real estate and vehicle purchases.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 912 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 4 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-danger me-2">Press Releases</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 10, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">AdSpot Reaches 50 Million Active Monthly Users</a>
+                                    </h4>
+                                    <p class="card-text">Milestone achievement represents 25% year-over-year growth and solidifies the platform's position as market leader.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 1,105 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 5 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-primary me-2">Events</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 8, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">AdSpot to Host Annual Marketplace Conference in September</a>
+                                    </h4>
+                                    <p class="card-text">The three-day event will bring together industry leaders, partners, and top sellers to discuss the future of online marketplaces.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 678 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News 6 -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start h-100 object-fit-cover" alt="News image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="d-flex mb-2">
+                                        <span class="badge bg-secondary me-2">Announcements</span>
+                                        <span class="text-muted small"><i class="bi bi-calendar3"></i> March 5, 2025</span>
+                                    </div>
+                                    <h4 class="card-title">
+                                        <a href="news-details.html" class="text-decoration-none text-dark">AdSpot Introduces Enhanced Security Features for All Users</a>
+                                    </h4>
+                                    <p class="card-text">New security measures include two-factor authentication, advanced fraud detection, and secure messaging to protect users.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small"><i class="bi bi-eye me-1"></i> 542 views</span>
+                                        <a href="news-details.html" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Most Read News -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="mb-3">Most Read</h4>
+                            
+                            <!-- Most Read 1 -->
+                            <div class="d-flex mb-3 pb-3 border-bottom">
+                                <img src="https://via.placeholder.com/80" class="rounded me-3" alt="Popular news">
+                                <div>
+                                    <h6 class="mb-1"><a href="news-details.html" class="text-decoration-none text-dark">AdSpot Secures $100M in Series D Funding</a></h6>
+                                    <p class="text-muted small mb-0"><i class="bi bi-calendar3"></i> March 1, 2025</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Most Read 2 -->
+                            <div class="d-flex mb-3 pb-3 border-bottom">
+                                <img src="https://via.placeholder.com/80" class="rounded me-3" alt="Popular news">
+                                <div>
+                                    <h6 class="mb-1"><a href="news-details.html" class="text-decoration-none text-dark">New Study Shows 70% of Jobs Now Posted Online First</a></h6>
+                                    <p class="text-muted small mb-0"><i class="bi bi-calendar3"></i> February 25, 2025</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Most Read 3 -->
+                            <div class="d-flex mb-3 pb-3 border-bottom">
+                                <img src="https://via.placeholder.com/80" class="rounded me-3" alt="Popular news">
+                                <div>
+                                    <h6 class="mb-1"><a href="news-details.html" class="text-decoration-none text-dark">AdSpot CEO Named Among Top 50 Tech Leaders</a></h6>
+                                    <p class="text-muted small mb-0"><i class="bi bi-calendar3"></i> February 20, 2025</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Most Read 4 -->
+                            <div class="d-flex">
+                                <img src="https://via.placeholder.com/80" class="rounded me-3" alt="Popular news">
+                                <div>
+                                    <h6 class="mb-1"><a href="news-details.html" class="text-decoration-none text-dark">Real Estate Inventory Expected to Increase by Summer</a></h6>
+                                    <p class="text-muted small mb-0"><i class="bi bi-calendar3"></i> February 15, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News Categories -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="mb-3">Categories</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Market Updates</a>
+                                    <span class="badge bg-primary rounded-pill">18</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Industry Trends</a>
+                                    <span class="badge bg-primary rounded-pill">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Company News</a>
+                                    <span class="badge bg-primary rounded-pill">15</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Press Releases</a>
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Events</a>
+                                    <span class="badge bg-primary rounded-pill">8</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">Announcements</a>
+                                    <span class="badge bg-primary rounded-pill">10</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- News Archive -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h4 class="mb-3">Archives</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">March 2025</a>
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">February 2025</a>
+                                    <span class="badge bg-primary rounded-pill">15</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">January 2025</a>
+                                    <span class="badge bg-primary rounded-pill">18</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">December 2024</a>
+                                    <span class="badge bg-primary rounded-pill">20</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a href="#" class="text-decoration-none text-dark">November 2024</a>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4 bg-primary bg-opacity-10 rounded">
+                            <h4 class="mb-3">Subscribe to Our Newsletter</h4>
+                            <p class="text-muted mb-4">Get the latest news and updates delivered straight to your inbox.</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your email address" required>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AdSpot</h5>
+                    <p class="text-muted">The #1 marketplace for all your needs. Find or sell homes, jobs, services, and more.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Real Estate</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Jobs</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Vehicles</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> 123 Main Street, New York, NY 10001</li>
+                        <li class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> (123) 456-7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> info@adspot.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 AdSpot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="bi bi-heart-fill text-danger"></i> for our users</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

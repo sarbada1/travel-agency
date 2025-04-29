@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.52 37.37">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 18px;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: TimesNewRomanPS-BoldMT, 'Times New Roman';
+        font-weight: 700;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #1b1464;
+      }
+
+      .cls-4 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-2 {
+        font-size: 14px;
+      }
+
+      .cls-5 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.04em;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-3" points="31.93 27.64 18.86 4.25 1.81 34.81 0 34.81 18.86 0 34.31 27.64 31.93 27.64"/>
+    <polygon class="cls-3" points="10.28 34.81 8.47 34.81 22 9.85 23.1 11.83 10.28 34.81"/>
+    <polygon class="cls-3" points="42.41 32.55 43.6 34.77 8.47 34.81 9.71 32.52 42.41 32.55"/>
+    <polygon class="cls-3" points="42.34 25.42 43.56 27.64 31.98 27.64 33.14 25.48 42.34 25.42"/>
+    <polygon class="cls-3" points="25.72 0 28.25 0 43.56 27.6 41.08 27.57 25.72 0"/>
+  </g>
+  <text class="cls-1" transform="translate(46.76 17.73) rotate(-1.09)"><tspan x="0" y="0">BOONM</tspan><tspan class="cls-4" x="70" y="0">A</tspan><tspan x="81.66" y="0">TRIX</tspan></text>
+  <text class="cls-2" transform="translate(48.11 32.78)"><tspan x="0" y="0">CONSU</tspan><tspan class="cls-5" x="49.01" y="0">L</tspan><tspan class="cls-4" x="57.06" y="0">T</tspan><tspan x="65.36" y="0">ANC</tspan><tspan class="cls-6" x="95.69" y="0">Y</tspan></text>
+</svg>

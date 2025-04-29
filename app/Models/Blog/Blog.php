@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Models\Blog;
+
+use App\Models\Tag\Tag;
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Blog extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'parent_id',
+        'user_id',
+        'category_id',
+        'is_published',
+        'title',
+        'slug',
+        'sub_title',
+        'summary',
+        'description',
+        'image',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'is_commentable',
+    ];
+
+
+    public function comments()
+    {
+        return $this->hasMany(BlogComments::class,
+            'blog_id')->whereNull('parent_id');
+    }
+
+    public function totalComments()
+    {
+        return $this->hasMany(BlogComments::class,
+            'blog_id', 'id')->count();
+    }
+
+
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(BlogCategory::class, 'category_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+    public function parent()
+    {
+        return $this->belongsTo(Blog::class, 'parent_id');
+
+    }
+
+    public function child()
+    {
+        return $this->hasMany(Blog::class,'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Blog::class, 'parent_id');
+    }
+
+
+    protected static function booted()
+    {
+        static::created(function () {
+            // Regenerate the sitemap when a post is created
+            \Artisan::call('sitemap:generate');
+        });
+
+        static::updated(function () {
+            // Regenerate the sitemap when a post is updated
+            \Artisan::call('sitemap:generate');
+        });
+
+        static::deleted(function () {
+            // Regenerate the sitemap when a post is deleted
+            \Artisan::call('sitemap:generate');
+        });
+    }
+
+}

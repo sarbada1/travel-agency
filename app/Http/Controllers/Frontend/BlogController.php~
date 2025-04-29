@@ -1,0 +1,111 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Blog\Blog;
+use App\Models\Blog\BlogCategory;
+use App\Models\Blog\BlogComments;
+use App\Repositories\Blogs\BlogsInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class BlogController extends Controller
+{
+    protected BlogsInterface $blog;
+
+    public function __construct(BlogsInterface $blog)
+    {
+        parent::__construct();
+        $this->blog = $blog;
+    }
+
+
+    public function index(Request $request)
+    {
+        if (!empty($request->slug)) {
+<<<<<<< HEAD
+            $blog = Blog::where('slug', '=', $request->slug)->first();
+            $this->data('blog', $blog);
+=======
+            $this->data('blog', Blog::where('slug', '=', $request->slug)->first());
+>>>>>>> a80e21b03274552f33235883a3685d9c1977829f
+
+            $this->data('relatedPost', Blog::orderBy('id', 'desc')
+                ->where('category_id', '=', $this->data['blog']->category_id)
+                ->where('slug', '!=', $request->slug)
+                ->limit(3)->get());
+            $this->data('popularPost', Blog::orderBy('id', 'desc')
+                ->where('slug', '!=', $request->slug)
+                ->limit(3)->get());
+<<<<<<< HEAD
+            $this->setMeta($blog->title, $blog->meta_description, $blog->meta_keywords);
+            $this->setOpenGraph('website', url('/'), asset('images/og-image.jpg'));
+            $this->data('seo', $this->getSeoData());
+=======
+>>>>>>> a80e21b03274552f33235883a3685d9c1977829f
+            $this->data('categoryData', BlogCategory::limit(5)->get());
+            return view('frontend.pages.blog.details', $this->data);
+        } else {
+            $this->data('blogsData', $this->blog->getAll());
+            $this->data('blogCategory', $this->blog->getAllCategory());
+<<<<<<< HEAD
+            $this->data('recentBlog', $this->blog->recentBlog());
+            $this->setMeta('Blogs', 'Welcome to our website', 'home, website, laravel');
+            $this->setOpenGraph('website', url('/'), asset('images/og-image.jpg'));
+            $this->data('seo', $this->getSeoData());
+=======
+            $this->data('recentBlog', Blog::orderBy('id', 'desc')->limit(4)->get());
+>>>>>>> a80e21b03274552f33235883a3685d9c1977829f
+            return view('frontend.pages.blog.index', $this->data);
+        }
+    }
+
+    public function category(Request $request)
+    {
+        if (!empty($request->slug)) {
+            if (!empty($request->blog_slug)) {
+                $this->data('blogData', Blog::where('slug', '=', $request->blog_slug)->first());
+                $this->data('recentBlog', Blog::orderBy('id', 'desc')
+                    ->where('slug', '!=', $request->blog_slug)
+                    ->limit(4)->get());
+                $this->data('categoryData', BlogCategory::where('slug', '!=', $request->slug)->limit(5)->get());
+                return view('frontend.pages.blog.category.details', $this->data);
+            } else {
+                $this->data('categoryData', BlogCategory::where('slug', '=', $request->slug)->first());
+                return view('frontend.pages.blog.category.index', $this->data);
+            }
+        } else {
+            $this->data('allCategory', BlogCategory::orderBy('id', 'desc')->get());
+            return view('frontend.pages.blog.category.list', $this->data);
+        }
+    }
+
+
+    public function blogComment(Request $request)
+    {
+
+
+        if (!Auth::check()) {
+            session(['last_product_page_id' => url()->previous()]);
+            return redirect()->route('auth');
+        }
+
+        if ($request->isMethod('get')) {
+            return redirect()->back();
+        }
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'body' => 'required',
+            ]);
+
+            $input = $request->all();
+            $input['user_id'] = Auth::user()->id;
+            BlogComments::create($input);
+            return back();
+
+        }
+
+    }
+}

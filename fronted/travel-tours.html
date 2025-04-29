@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Tours - AdSpot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">AdSpot</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="real-estate.html">Real Estate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vehicles.html">Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobs.html">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hotels.html">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electronics.html">Electronics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="consultancy.html">Consultancy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="travel-tours.html">Travel & Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Travel & Tours Header -->
+    <header class="bg-primary py-5" style="background-image: url('https://via.placeholder.com/1920x600'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(13, 110, 253, 0.7);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white">
+                    <h1 class="fw-bold mb-3">Discover Amazing Tours & Travel Packages</h1>
+                    <p class="lead mb-4">Explore the world with our curated selection of tours, vacation packages, and unique travel experiences.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h5 class="mb-3">Find Your Perfect Trip</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                                            <input type="text" class="form-control" placeholder="Search destinations, tours, activities...">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Destination">
+                                            <option selected>All Destinations</option>
+                                            <option value="1">Europe</option>
+                                            <option value="2">Asia</option>
+                                            <option value="3">North America</option>
+                                            <option value="4">South America</option>
+                                            <option value="5">Africa</option>
+                                            <option value="6">Australia & Oceania</option>
+                                            <option value="7">Antarctica</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Tour Type">
+                                            <option selected>All Tour Types</option>
+                                            <option value="1">Adventure</option>
+                                            <option value="2">Cultural</option>
+                                            <option value="3">Beach & Relaxation</option>
+                                            <option value="4">Wildlife & Safari</option>
+                                            <option value="5">City Breaks</option>
+                                            <option value="6">Cruises</option>
+                                            <option value="7">Luxury</option>
+                                            <option value="8">Family Friendly</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Duration">
+                                            <option selected>Any Duration</option>
+                                            <option value="1">1-3 Days</option>
+                                            <option value="2">4-7 Days</option>
+                                            <option value="3">8-14 Days</option>
+                                            <option value="4">15+ Days</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Budget">
+                                            <option selected>Any Budget</option>
+                                            <option value="1">Budget (Under $1,000)</option>
+                                            <option value="2">Mid-range ($1,000-$3,000)</option>
+                                            <option value="3">Luxury ($3,000-$5,000)</option>
+                                            <option value="4">Ultra Luxury ($5,000+)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="date" class="form-control" placeholder="Departure Date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-select" aria-label="Travelers">
+                                            <option selected>Number of Travelers</option>
+                                            <option value="1">1 Person</option>
+                                            <option value="2">2 People</option>
+                                            <option value="3">3-5 People</option>
+                                            <option value="4">6+ People</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100">Search Tours</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Tours -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0">Featured Tours</h2>
+                <a href="#" class="text-decoration-none">View All <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="row g-4">
+                <!-- Featured Tour 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Italian Adventure">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-success position-absolute top-0 start-0 m-3">Best Seller</span>
+                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-calendar3 me-1"></i> 10 Days</span>
+                                    <span><i class="bi bi-people-fill me-1"></i> Max 12 People</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Italian Renaissance Journey</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                    <span class="text-muted ms-1">(48)</span>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Rome, Florence, Venice, Milan</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Cultural</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Food & Wine</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-building me-1"></i> City Tours</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-palette me-1"></i> Art & History</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Experience the best of Italy on this comprehensive tour through Rome, Florence, Venice, and Milan. Explore ancient ruins, Renaissance art, and enjoy authentic Italian cuisine.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-primary fw-bold fs-5">$2,499</span>
+                                    <span class="text-muted"> / per person</span>
+                                </div>
+                                <span class="text-muted small">Next departure: Jun 15</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Tour 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Thailand Adventure">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-3">20% Off</span>
+                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-calendar3 me-1"></i> 12 Days</span>
+                                    <span><i class="bi bi-people-fill me-1"></i> Max 10 People</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Thailand Explorer</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <span class="text-muted ms-1">(36)</span>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Bangkok, Chiang Mai, Phuket, Krabi</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Adventure</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Beach</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tree me-1"></i> Nature</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Food</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Discover the wonders of Thailand from bustling Bangkok to the serene beaches of Phuket. Experience authentic Thai culture, cuisine, and natural beauty.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-primary fw-bold fs-5">$1,899</span>
+                                    <span class="text-decoration-line-through text-muted">$2,399</span>
+                                    <span class="text-muted"> / per person</span>
+                                </div>
+                                <span class="text-muted small">Next departure: Jul 8</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Tour 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="African Safari">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-3">Featured</span>
+                            <span class="badge bg-info position-absolute top-0 start-0 m-3">New</span>
+                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><i class="bi bi-calendar3 me-1"></i> 8 Days</span>
+                                    <span><i class="bi bi-people-fill me-1"></i> Max 8 People</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Kenyan Safari Adventure</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                    <span class="text-muted ms-1">(24)</span>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Nairobi, Masai Mara, Amboseli, Lake Nakuru</p>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Safari</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-camera me-1"></i> Wildlife</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tree me-1"></i> Nature</span>
+                                <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-people me-1"></i> Cultural</span>
+                            </div>
+                            <p class="card-text text-muted mb-3">Embark on an unforgettable safari adventure through Kenya's most iconic national parks. Witness the Big Five and experience the magic of African wildlife.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-primary fw-bold fs-5">$3,299</span>
+                                    <span class="text-muted"> / per person</span>
+                                </div>
+                                <span class="text-muted small">Next departure: Aug 12</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white p-4 border-top-0">
+                            <div class="d-grid gap-2">
+                                <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="fw-bold mb-4 text-center">Popular Destinations</h2>
+            <div class="row g-4">
+                <!-- Destination 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Europe" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.3);">
+                                <div class="text-center text-white">
+                                    <h3 class="fw-bold mb-0">Europe</h3>
+                                    <p class="mb-0">120+ Tours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Asia" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.3);">
+                                <div class="text-center text-white">
+                                    <h3 class="fw-bold mb-0">Asia</h3>
+                                    <p class="mb-0">95+ Tours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Africa" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.3);">
+                                <div class="text-center text-white">
+                                    <h3 class="fw-bold mb-0">Africa</h3>
+                                    <p class="mb-0">78+ Tours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Americas" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.3);">
+                                <div class="text-center text-white">
+                                    <h3 class="fw-bold mb-0">Americas</h3>
+                                    <p class="mb-0">105+ Tours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="card border-0 shadow-sm sticky-lg-top" style="top: 100px; z-index: 1;">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0">Filters</h5>
+                                <button class="btn btn-sm btn-outline-secondary">Reset</button>
+                            </div>
+                            
+                            <!-- Destination Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Destination</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="europeCheck">
+                                    <label class="form-check-label" for="europeCheck">
+                                        Europe
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="asiaCheck">
+                                    <label class="form-check-label" for="asiaCheck">
+                                        Asia
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="africaCheck">
+                                    <label class="form-check-label" for="africaCheck">
+                                        Africa
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="northAmericaCheck">
+                                    <label class="form-check-label" for="northAmericaCheck">
+                                        North America
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="southAmericaCheck">
+                                    <label class="form-check-label" for="southAmericaCheck">
+                                        South America
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="oceaniaCheck">
+                                    <label class="form-check-label" for="oceaniaCheck">
+                                        Australia & Oceania
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="antarcticaCheck">
+                                    <label class="form-check-label" for="antarcticaCheck">
+                                        Antarctica
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Price Range Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Price Range</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="text" class="form-control form-control-sm me-2" placeholder="Min">
+                                    <span>to</span>
+                                    <input type="text" class="form-control form-control-sm ms-2" placeholder="Max">
+                                </div>
+                                <input type="range" class="form-range" min="0" max="10000" step="500" id="priceRange">
+                                <div class="d-flex justify-content-between">
+                                    <span class="small text-muted">$0</span>
+                                    <span class="small text-muted">$10,000+</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Duration Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Duration</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="shortCheck">
+                                    <label class="form-check-label" for="shortCheck">
+                                        1-3 Days
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="weekCheck">
+                                    <label class="form-check-label" for="weekCheck">
+                                        4-7 Days
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="twoWeekCheck">
+                                    <label class="form-check-label" for="twoWeekCheck">
+                                        8-14 Days
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="longCheck">
+                                    <label class="form-check-label" for="longCheck">
+                                        15+ Days
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Tour Type Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Tour Type</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="adventureCheck">
+                                    <label class="form-check-label" for="adventureCheck">
+                                        Adventure
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="culturalCheck">
+                                    <label class="form-check-label" for="culturalCheck">
+                                        Cultural
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="beachCheck">
+                                    <label class="form-check-label" for="beachCheck">
+                                        Beach & Relaxation
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="safariCheck">
+                                    <label class="form-check-label" for="safariCheck">
+                                        Wildlife & Safari
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="cityCheck">
+                                    <label class="form-check-label" for="cityCheck">
+                                        City Breaks
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="cruiseCheck">
+                                    <label class="form-check-label" for="cruiseCheck">
+                                        Cruises
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="luxuryCheck">
+                                    <label class="form-check-label" for="luxuryCheck">
+                                        Luxury
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Group Size Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Group Size</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="smallCheck">
+                                    <label class="form-check-label" for="smallCheck">
+                                        Small Group (1-8)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="mediumCheck">
+                                    <label class="form-check-label" for="mediumCheck">
+                                        Medium Group (9-16)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="largeCheck">
+                                    <label class="form-check-label" for="largeCheck">
+                                        Large Group (17+)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Ratings Filter -->
+                            <div class="mb-4">
+                                <h6 class="mb-3">Ratings</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="fiveStarCheck">
+                                    <label class="form-check-label" for="fiveStarCheck">
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="fourStarCheck">
+                                    <label class="form-check-label" for="fourStarCheck">
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <span class="ms-1">& up</span>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="threeStarCheck">
+                                    <label class="form-check-label" for="threeStarCheck">
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <span class="ms-1">& up</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Apply Filters Button -->
+                            <div class="d-grid">
+                                <button class="btn btn-primary">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tour Listings -->
+                <div class="col-lg-9">
+                    <!-- Sorting and View Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="mb-1">All Tours</h4>
+                            <p class="text-muted mb-0">Showing 1-9 of 256 results</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <select class="form-select form-select-sm">
+                                    <option selected>Sort by: Recommended</option>
+                                    <option value="1">Price: Low to High</option>
+                                    <option value="2">Price: High to Low</option>
+                                    <option value="3">Duration: Shortest First</option>
+                                    <option value="4">Duration: Longest First</option>
+                                    <option value="5">Highest Rated</option>
+                                    <option value="6">Most Popular</option>
+                                </select>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="View options">
+                                <button type="button" class="btn btn-outline-secondary btn-sm active">
+                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tour Listings Grid -->
+                    <div class="row g-4">
+                        <!-- Tour 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Japan Tour">
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 14 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 12 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Japan Cultural Odyssey</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                            <span class="text-muted ms-1">(42)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Tokyo, Kyoto, Osaka, Hiroshima</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Cultural</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Food</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-building me-1"></i> City</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Immerse yourself in Japanese culture on this comprehensive tour. Visit ancient temples, experience tea ceremonies, and enjoy authentic cuisine.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$3,799</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Sep 5</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Peru Tour">
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-3">Best Seller</span>
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 9 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 10 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Peru & Machu Picchu</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <span class="text-muted ms-1">(56)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Lima, Cusco, Sacred Valley, Machu Picchu</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Adventure</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-mountain me-1"></i> Hiking</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-people me-1"></i> Cultural</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Discover the wonders of Peru from the bustling streets of Lima to the ancient ruins of Machu Picchu. Trek the Inca Trail and explore Cusco.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$2,199</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Jul 22</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Greek Islands">
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-3">15% Off</span>
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 10 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 14 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Greek Islands Hopping</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                            <span class="text-muted ms-1">(38)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Athens, Mykonos, Santorini, Crete</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Beach</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Island</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-cup-hot me-1"></i> Food</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Experience the beauty of the Greek Islands with this island-hopping adventure. Enjoy stunning beaches, ancient ruins, and delicious Mediterranean cuisine.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$1,699</span>
+                                            <span class="text-decoration-line-through text-muted">$1,999</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Jun 28</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Morocco Tour">
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 8 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 12 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Moroccan Magic</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <span class="text-muted ms-1">(29)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Marrakech, Fes, Casablanca, Sahara Desert</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Cultural</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-shop me-1"></i> Markets</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-moon-stars me-1"></i> Desert</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Journey through Morocco's vibrant cities and stunning landscapes. Explore ancient medinas, camp in the Sahara, and experience Berber culture.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$1,499</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Aug 8</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="New Zealand Tour">
+                                    <span class="badge bg-info position-absolute top-0 start-0 m-3">New</span>
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 15 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 10 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">New Zealand Adventure</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                            <span class="text-muted ms-1">(22)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Auckland, Rotorua, Queenstown, Milford Sound</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Adventure</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tree me-1"></i> Nature</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Outdoor</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Explore the stunning landscapes of New Zealand from the North to South Island. Experience thrilling adventures, Maori culture, and breathtaking scenery.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$4,299</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Oct 10</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative">
+                                    <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Egypt Tour">
+                                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span><i class="bi bi-calendar3 me-1"></i> 7 Days</span>
+                                            <span><i class="bi bi-people-fill me-1"></i> Max 16 People</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0">Egyptian Wonders</h5>
+                                        <div class="text-warning">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star"></i>
+                                            <span class="text-muted ms-1">(34)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-3"><i class="bi bi-geo-alt me-1"></i> Cairo, Luxor, Aswan, Nile Cruise</p>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-tag me-1"></i> Historical</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-building me-1"></i> Ancient</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-water me-1"></i> Cruise</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">Discover the ancient wonders of Egypt from the Pyramids of Giza to the Valley of the Kings. Cruise the Nile and explore ancient temples.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="text-primary fw-bold fs-5">$1,899</span>
+                                            <span class="text-muted"> / per person</span>
+                                        </div>
+                                        <span class="text-muted small">Next departure: Sep 18</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white p-4 border-top-0">
+                                    <div class="d-grid gap-2">
+                                        <a href="tour-details.html" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="fw-bold mb-5 text-center">Why Choose Our Tours</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center">
+                        <i class="bi bi-award text-primary fs-1 mb-3"></i>
+                        <h5 class="mb-3">Expert Guides</h5>
+                        <p class="text-muted">Our knowledgeable guides bring destinations to life with insider knowledge and fascinating stories.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center">
+                        <i class="bi bi-shield-check text-primary fs-1 mb-3"></i>
+                        <h5 class="mb-3">Safe Travel</h5>
+                        <p class="text-muted">Your safety is our priority with comprehensive protocols and 24/7 support during your journey.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center">
+                        <i class="bi bi-heart text-primary fs-1 mb-3"></i>
+                        <h5 class="mb-3">Authentic Experiences</h5>
+                        <p class="text-muted">Go beyond tourist attractions with immersive cultural experiences and local interactions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="text-center">
+                        <i class="bi bi-wallet2 text-primary fs-1 mb-3"></i>
+                        <h5 class="mb-3">Value for Money</h5>
+                        <p class="text-muted">Enjoy quality experiences at competitive prices with no hidden fees or unexpected costs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="fw-bold mb-5 text-center">What Our Travelers Say</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <img src="https://via.placeholder.com/60" class="rounded-circle me-3" alt="Testimonial">
+                                <div>
+                                    <h5 class="mb-0">Sarah Johnson</h5>
+                                    <p class="text-muted mb-0">Italian Renaissance Journey</p>
+                                </div>
+                            </div>
+                            <div class="text-warning mb-3">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="card-text">"This tour exceeded all my expectations! Our guide Marco was incredibly knowledgeable about Italian history and art. The accommodations were excellent, and the itinerary was perfectly balanced between guided tours and free time to explore. I'll never forget the sunset over Florence from Piazzale Michelangelo!"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <img src="https://via.placeholder.com/60" class="rounded-circle me-3" alt="Testimonial">
+                                <div>
+                                    <h5 class="mb-0">Michael Chen</h5>
+                                    <p class="text-muted mb-0">Thailand Explorer</p>
+                                </div>
+                            </div>
+                            <div class="text-warning mb-3">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                            <p class="card-text">"The Thailand Explorer tour was the perfect mix of adventure and relaxation. From the bustling streets of Bangkok to the serene beaches of Phuket, every day brought new experiences. Our guide Suki made us feel like family and introduced us to authentic Thai cuisine that I'm still dreaming about!"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <img src="https://via.placeholder.com/60" class="rounded-circle me-3" alt="Testimonial">
+                                <div>
+                                    <h5 class="mb-0">Emily Rodriguez</h5>
+                                    <p class="text-muted mb-0">Kenyan Safari Adventure</p>
+                                </div>
+                            </div>
+                            <div class="text-warning mb-3">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="card-text">"Words cannot describe the magic of witnessing the Great Migration in the Masai Mara. Our guide James had an incredible ability to spot wildlife and shared fascinating insights about animal behavior. The tented camps were comfortable yet authentic, and falling asleep to the sounds of the savanna was unforgettable."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Read More Reviews</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-3">Ready for your next adventure?</h2>
+                    <p class="lead mb-0">Join our newsletter to receive exclusive offers and travel inspiration for your next journey.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email address">
+                        <button class="btn btn-light" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AdSpot</h5>
+                    <p class="text-muted">The #1 marketplace for all your needs. Find or sell homes, jobs, services, and more.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Real Estate</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Vehicles</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Electronics</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Travel & Tours</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Jobs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about-us.html" class="text-muted text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-muted text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="privacy-policy.html" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-muted text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold mb-3">Contact Us</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i> 123 Main Street, New York, NY 10001</li>
+                        <li class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> (123) 456-7890</li>
+                        <li class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> info@adspot.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2025 AdSpot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">Designed with <i class="bi bi-heart-fill text-danger"></i> for our users</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

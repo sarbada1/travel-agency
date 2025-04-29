@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Mail\ContactEmail;
+use App\Models\Contact\Contact;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
+
+class ContactController extends Controller
+{
+
+    public function index()
+    {
+        $this->setMeta('Contact us', 'Welcome to our website', 'contact, website, laravel');
+        $this->setOpenGraph('website', url('/'), asset('images/og-image.jpg'));
+        $this->data('seo', $this->getSeoData());
+        return view('frontend.pages.contact.index', $this->data);
+    }
+
+//    public function store(Request $request)
+//    {
+//        $request->validate([
+//            'name' => 'required',
+//            'email' => 'required|email',
+//            'subject' => 'required',
+//            'message' => 'required',
+//        ]);
+//
+//        $getEmail = env('MAIL_FROM_ADDRESS');
+//
+//        $details = $request->all();
+//        $contact = new Contact();
+//        $contact->name = $request->name;
+//        $contact->email = $request->email;
+//        $contact->subject = $request->subject;
+//        $contact->message = $request->message;
+//        $contact->save();
+//        Mail::to($getEmail)->send(new ContactEmail($details));
+//        return redirect()->back()->with('success', 'Your message has been sent successfully.');
+//
+//
+//    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        } else {
+            $contact = new Contact();
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->subject = $request->subject;
+            $contact->message = $request->message;
+            $contact->save();
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactEmail($contact));
+        }
+
+        // Process the data (e.g., send email, save to database)
+        return response()->json(['success' => 'Message sent successfully!']);
+    }
+}

@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Providers\Address;
+
+use App\Repositories\Address\Child\CountryPageInterface;
+use App\Repositories\Address\Child\CountryPageRepository;
+use App\Repositories\Address\ContinentInterface;
+use App\Repositories\Address\ContinentRepository;
+use App\Repositories\Address\CountryInterface;
+use App\Repositories\Address\CountryRepository;
+use Illuminate\Support\ServiceProvider;
+
+class AddressServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        $this->app->bind(ContinentInterface::class, ContinentRepository::class);
+        $this->app->bind(CountryInterface::class, CountryRepository::class);
+        $this->app->bind(CountryPageInterface::class, CountryPageRepository::class);
+
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+}

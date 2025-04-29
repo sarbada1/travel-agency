@@ -1,0 +1,56 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\News\NewsCategory;
+
+class NewsCategoryTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $newsCategory = [
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Market Updates',
+                'slug' => 'market-updates',
+            ],
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Industry Trends',
+                'slug' => 'industry-trends',
+            ],
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Company News',
+                'slug' => 'company-news',
+            ],
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Press Releases',
+                'slug' => 'press-releases',
+            ],
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Events',
+                'slug' => 'events',
+            ],
+            [
+                'user_id' => 1,
+                'parent_id' => null,
+                'name' => 'Announcements',
+                'slug' => 'announcements',
+            ],
+
+        ];
+    }
+}

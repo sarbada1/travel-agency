@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Models\Blog;
+
+use App\Models\User\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class BlogCategory extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'parent_id',
+        'name',
+        'slug',
+        'sub_title',
+        'description',
+        'status',
+        'image',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
+
+
+
+    public function postedBy()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class, 'category_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(BlogCategory::class,'parent_id');
+    }
+
+    public function child()
+    {
+        return $this->hasMany(BlogCategory::class,'parent_id','id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(BlogCategory::class,'parent_id','id');
+    }
+
+    public function  totalBlog()
+    {
+        return $this->hasMany(Blog::class,'category_id')->count();
+    }
+}

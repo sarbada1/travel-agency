@@ -1,0 +1,153 @@
+/* Custom CSS for AdSpot */
+
+/* Global Styles */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #f72585;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --gray-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark-color);
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+}
+
+/* Category Cards */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.category-icon {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Listing Cards */
+.listing-card, .job-card, .blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-card:hover, .job-card:hover, .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.listing-card .card-img-top, .blog-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Search Box */
+.search-box {
+    border-radius: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Ad Banners */
+.ad-banner {
+    transition: all 0.3s ease;
+}
+
+.ad-banner:hover {
+    opacity: 0.95;
+}
+
+/* Blog Section */
+.blog-card .card-title {
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.blog-card .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Jobs Section */
+.company-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.job-card .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 0;
+    }
+
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+
+    .blog-card .card-title, .job-card .card-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    h1.display-4 {
+        font-size: 2rem;
+    }
+
+    .search-box {
+        padding: 15px;
+    }
+
+    .blog-card .card-title, .job-card .card-title {
+        font-size: 1rem;
+    }
+}
+
+/* Footer */
+footer a:hover {
+    color: #fff !important;
+}
+.article-content {
+    overflow-wrap: break-word;
+  
+}
