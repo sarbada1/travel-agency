@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             PageTableSeeder::class,
             CategoryTableSeeder::class,
             PackageAttributeSeeder::class,
+            CategoryAttributeSeeder::class,
+
             // SocialMediaTableSeeder::class,
             // NewsCategoryTableSeeder::class,
             // AdPositionSeeder::class,

@@ -67,10 +67,13 @@ class Category extends Model
     }
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class, 'category_attributes')
-            ->withPivot('is_required', 'is_filterable', 'is_searchable', 'display_order')
-            ->orderBy('category_attributes.display_order', 'asc')
-            ->withTimestamps();
+        return $this->belongsToMany(
+            \App\Models\TourPackage\PackageAttribute::class, 
+            'category_attributes', 
+            'category_id', 
+            'package_attribute_id'
+        )->withPivot('is_required',  'is_featured', 'display_order')
+         ->withTimestamps();
     }
 
     public function getEffectivePageType()

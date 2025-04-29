@@ -21,10 +21,18 @@ class PackageAttributeCreateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [ 
-        'name' => 'required|unique:package_attributes,name',
-        'slug' => 'required|unique:package_attributes,slug'
-        
+        return [
+            'name' => 'required',
+            'slug' => 'required',
+            'attribute_group_id' => 'required|exists:attribute_groups,id',
+            'type' => 'required|in:text,rich_text,array,json,boolean,number,date',
+            'description' => 'nullable|string',
+            'is_required' => 'nullable|boolean',
+            'is_filterable' => 'nullable|boolean',
+            'active' => 'nullable|boolean',
+            'display_order' => 'nullable|integer',
+            'options' => 'nullable|array',
+            'default_value' => 'nullable|string',
         ];
     }
 }

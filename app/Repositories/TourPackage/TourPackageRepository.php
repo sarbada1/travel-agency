@@ -2,21 +2,24 @@
 
 namespace App\Repositories\TourPackage;
 
-use App\Models\TourPackage\TourPackage;
-use App\Models\TourPackage\AttributeValue;
 use App\Traits\General;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+use App\Models\TourPackage\TourPackage;
+use App\Services\AttributeValueService;
+use Illuminate\Support\Facades\Request;
+use App\Models\TourPackage\AttributeValue;
 
 class TourPackageRepository implements TourPackageInterface
 {
     use General;
+    protected $attributeValueService;
 
     private $model;
 
-    public function __construct(TourPackage $model)
+    public function __construct(TourPackage $model, AttributeValueService $attributeValueService)
     {
         $this->model = $model;
+        $this->attributeValueService = $attributeValueService;
     }
 
     public function getAll()
@@ -37,137 +40,186 @@ class TourPackageRepository implements TourPackageInterface
     public function insert(array $data)
     {
         try {
-            // Set user ID
-            $data['user_id'] = auth()->user()->id ?? 1;
-            
-            // Generate slug if not provided
-            if (!isset($data['slug']) || empty($data['slug'])) {
-                $data['slug'] = Str::slug($data['name']);
-            }
-            
-            // Handle gallery images
-            if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
-                $data['gallery_images'] = json_encode($data['gallery_images']);
-            }
-            
-            // Extract attribute data
-            $attributeData = [];
+            DB::beginTransaction();
+
+            // Extract category, destination, and activity IDs
+            $categories = $data['categories'] ?? [];
+            unset($data['categories']);
+
+            $destinations = $data['destinations'] ?? [];
+            unset($data['destinations']);
+
+            $activities = $data['activities'] ?? [];
+            unset($data['activities']);
+
+            // Extract itinerary data
+            $itinerary = $data['itinerary'] ?? [];
+            unset($data['itinerary']);
+
+            // Extract inclusions and exclusions
+            $inclusions = $data['inclusions'] ?? [];
+            unset($data['inclusions']);
+
+            $exclusions = $data['exclusions'] ?? [];
+            unset($data['exclusions']);
+
+            // Extract all dynamic attributes
+            $attributeValues = [];
             foreach ($data as $key => $value) {
                 if (strpos($key, 'attribute_') === 0) {
-                    $attributeId = substr($key, 10); // Extract ID after 'attribute_'
-                    $attributeData[$attributeId] = $value;
+                    $attributeId = substr($key, strlen('attribute_'));
+                    $attributeValues[$attributeId] = $value;
                     unset($data[$key]);
                 }
             }
-            
-            // Create tour package
+
+            // Create the tour package
             $tourPackage = $this->model->create($data);
-            
-            if ($tourPackage) {
-                // Handle featured image upload
-                $tableName = $this->model->getTable();
-                $filePath = 'uploads/' . $tableName;
-                $fileData['featured_image'] = $this->customFileUpload($filePath);
-                $this->updateFile($tourPackage->id, $fileData);
-                
-                // Handle categories
-                if (isset($data['categories']) && is_array($data['categories'])) {
-                    $tourPackage->categories()->sync($data['categories']);
-                }
-                
-                // Handle destinations
-                if (isset($data['destinations']) && is_array($data['destinations'])) {
-                    $tourPackage->destinations()->sync($data['destinations']);
-                }
-                
-                // Handle activities
-                if (isset($data['activities']) && is_array($data['activities'])) {
-                    $activities = [];
-                    foreach ($data['activities'] as $activityId) {
-                        $isOptional = isset($data['activity_optional'][$activityId]) ? true : false;
-                        $additionalCost = isset($data['activity_cost'][$activityId]) ? $data['activity_cost'][$activityId] : 0;
-                        
-                        $activities[$activityId] = [
-                            'is_optional' => $isOptional,
-                            'additional_cost' => $additionalCost
-                        ];
-                    }
-                    $tourPackage->activities()->sync($activities);
-                }
-                
-                // Save attribute values
-                $this->saveAttributeValues($tourPackage, $attributeData);
-                
-                return true;
+
+            // Attach categories, destinations, and activities
+            if (!empty($categories)) {
+                $tourPackage->categories()->attach($categories);
             }
+
+            if (!empty($destinations)) {
+                $tourPackage->categories()->attach($destinations); // Destinations are stored in categories
+            }
+
+            // Save itinerary data
+            if (!empty($itinerary)) {
+                $this->attributeValueService->saveItinerary($tourPackage->id, $itinerary);
+            }
+
+            // Save inclusions
+            if (!empty($inclusions)) {
+                $this->attributeValueService->saveInclusions($tourPackage->id, $inclusions);
+            }
+
+            // Save exclusions
+            if (!empty($exclusions)) {
+                $this->attributeValueService->saveExclusions($tourPackage->id, $exclusions);
+            }
+
+            // Save all dynamic attributes
+            foreach ($attributeValues as $attributeId => $value) {
+                $this->attributeValueService->saveAttributeValue(
+                    $tourPackage->id,
+                    $attributeId,
+                    $value
+                );
+            }
+
+            DB::commit();
+            return $tourPackage;
         } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Failed to create tour package: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
             return false;
         }
-        return false;
     }
 
     public function update(array $data, $id)
     {
         try {
-            $tourPackage = $this->model->findOrFail($id);
-            
-            // Generate slug if not provided
-            if (!isset($data['slug']) || empty($data['slug'])) {
-                $data['slug'] = Str::slug($data['name']);
-            }
-            
-            // Handle gallery images
-            if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
-                $data['gallery_images'] = json_encode($data['gallery_images']);
-            }
-            
-            // Extract attribute data
-            $attributeData = [];
+            DB::beginTransaction();
+
+            $tourPackage = $this->getById($id);
+
+            // Extract category, destination, and activity IDs
+            $categories = $data['categories'] ?? [];
+            unset($data['categories']);
+
+            $destinations = $data['destinations'] ?? [];
+            unset($data['destinations']);
+
+            $activities = $data['activities'] ?? [];
+            unset($data['activities']);
+
+            // Extract itinerary data
+            $itinerary = $data['itinerary'] ?? [];
+            unset($data['itinerary']);
+
+            // Extract inclusions and exclusions
+            $inclusions = $data['inclusions'] ?? [];
+            unset($data['inclusions']);
+
+            $exclusions = $data['exclusions'] ?? [];
+            unset($data['exclusions']);
+
+            // Extract all dynamic attributes
+            $attributeValues = [];
             foreach ($data as $key => $value) {
                 if (strpos($key, 'attribute_') === 0) {
-                    $attributeId = substr($key, 10); // Extract ID after 'attribute_'
-                    $attributeData[$attributeId] = $value;
+                    $attributeId = substr($key, strlen('attribute_'));
+                    $attributeValues[$attributeId] = $value;
                     unset($data[$key]);
                 }
             }
-            
-            // Update tour package
-            if ($tourPackage->update($data)) {
-                // Handle categories
-                if (isset($data['categories']) && is_array($data['categories'])) {
-                    $tourPackage->categories()->sync($data['categories']);
-                }
-                
-                // Handle destinations
-                if (isset($data['destinations']) && is_array($data['destinations'])) {
-                    $tourPackage->destinations()->sync($data['destinations']);
-                }
-                
-                // Handle activities
-                if (isset($data['activities']) && is_array($data['activities'])) {
-                    $activities = [];
-                    foreach ($data['activities'] as $activityId) {
-                        $isOptional = isset($data['activity_optional'][$activityId]) ? true : false;
-                        $additionalCost = isset($data['activity_cost'][$activityId]) ? $data['activity_cost'][$activityId] : 0;
-                        
-                        $activities[$activityId] = [
-                            'is_optional' => $isOptional,
-                            'additional_cost' => $additionalCost
-                        ];
-                    }
-                    $tourPackage->activities()->sync($activities);
-                }
-                
-                // Save attribute values
-                $this->saveAttributeValues($tourPackage, $attributeData);
-                
-                return true;
-            } else {
-                return false;
+
+            // Update the tour package
+            $tourPackage->update($data);
+
+            // Sync categories and destinations
+            if (!empty($categories)) {
+                $tourPackage->categories()->sync($categories);
             }
+
+            if (!empty($destinations)) {
+                // First detach all destinations
+                $tourPackage->categories()->detach(
+                    $tourPackage->destinations->pluck('id')->toArray()
+                );
+
+                // Then attach new destinations
+                $tourPackage->categories()->attach($destinations);
+            }
+
+            // Delete existing attributes and save new values
+            AttributeValue::where('tour_package_id', $tourPackage->id)->delete();
+
+            // Save itinerary data
+            if (!empty($itinerary)) {
+                $this->attributeValueService->saveItinerary($tourPackage->id, $itinerary);
+            }
+
+            // Save inclusions
+            if (!empty($inclusions)) {
+                $this->attributeValueService->saveInclusions($tourPackage->id, $inclusions);
+            }
+
+            // Save exclusions
+            if (!empty($exclusions)) {
+                $this->attributeValueService->saveExclusions($tourPackage->id, $exclusions);
+            }
+
+            // Save all dynamic attributes
+            foreach ($attributeValues as $attributeId => $value) {
+                $this->attributeValueService->saveAttributeValue(
+                    $tourPackage->id,
+                    $attributeId,
+                    $value
+                );
+            }
+
+            DB::commit();
+            return true;
         } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Failed to update tour package: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
             return false;
         }
+    }
+
+    public function getWithAttributes($id)
+    {
+        $tourPackage = $this->model->with(['categories', 'user'])->findOrFail($id);
+
+        // Get all attributes for this package, grouped by attribute group
+        $tourPackage->attribute_groups = $this->attributeValueService->getGroupedAttributes($id);
+
+        return $tourPackage;
     }
 
     public function delete($id)
@@ -180,7 +232,7 @@ class TourPackageRepository implements TourPackageInterface
         }
 
         $tourPackage = $this->model->findOrFail($id);
-        
+
         // Delete featured image
         if ($tourPackage->featured_image) {
             $imagePath = parse_url($tourPackage->featured_image, PHP_URL_PATH);
@@ -188,7 +240,7 @@ class TourPackageRepository implements TourPackageInterface
                 unlink(public_path($imagePath));
             }
         }
-        
+
         // Delete gallery images
         if ($tourPackage->gallery_images) {
             $galleryImages = json_decode($tourPackage->gallery_images, true);
@@ -201,14 +253,14 @@ class TourPackageRepository implements TourPackageInterface
                 }
             }
         }
-        
+
         // Delete description images
         $descriptionImages = [];
         preg_match_all('/<img[^>]+src="([^">]+)"/', $tourPackage->description, $matches);
         if (isset($matches[1])) {
             $descriptionImages = $matches[1];
         }
-        
+
         foreach ($descriptionImages as $image) {
             if (strpos($image, $http_s) === 0) {
                 $imagePath = parse_url($image, PHP_URL_PATH);
@@ -228,51 +280,41 @@ class TourPackageRepository implements TourPackageInterface
     public function getFeatured()
     {
         return $this->model->where('is_featured', true)
-                            ->where('status', 'active')
-                            ->with(['categories', 'destinations'])
-                            ->get();
+            ->where('status', 'active')
+            ->with(['categories', 'destinations'])
+            ->get();
     }
 
     public function getPopular()
     {
         return $this->model->where('is_popular', true)
-                            ->where('status', 'active')
-                            ->with(['categories', 'destinations'])
-                            ->get();
+            ->where('status', 'active')
+            ->with(['categories', 'destinations'])
+            ->get();
     }
 
     public function getByCategoryId($categoryId)
     {
         return $this->model->whereHas('categories', function ($query) use ($categoryId) {
-                                $query->where('categories.id', $categoryId);
-                            })
-                            ->where('status', 'active')
-                            ->with(['categories', 'destinations'])
-                            ->get();
+            $query->where('categories.id', $categoryId);
+        })
+            ->where('status', 'active')
+            ->with(['categories', 'destinations'])
+            ->get();
     }
 
     public function getByDestinationId($destinationId)
     {
         return $this->model->whereHas('destinations', function ($query) use ($destinationId) {
-                                $query->where('destinations.id', $destinationId);
-                            })
-                            ->where('status', 'active')
-                            ->with(['categories', 'destinations'])
-                            ->get();
+            $query->where('destinations.id', $destinationId);
+        })
+            ->where('status', 'active')
+            ->with(['categories', 'destinations'])
+            ->get();
     }
 
-    public function getWithAttributes($packageId)
-    {
-        $package = $this->model->with(['categories', 'destinations', 'activities'])->findOrFail($packageId);
-        $attributes = AttributeValue::with('packageAttribute')
-                                    ->where('attributable_id', $packageId)
-                                    ->where('attributable_type', get_class($this->model))
-                                    ->get();
-                                    
-        $package->attributeValues = $attributes;
-        return $package;
-    }
-    
+
+
     private function saveAttributeValues($tourPackage, $attributeData)
     {
         foreach ($attributeData as $attributeId => $value) {
@@ -280,9 +322,9 @@ class TourPackageRepository implements TourPackageInterface
             if (!$attribute) {
                 continue;
             }
-            
+
             $valueColumn = $this->getValueColumnForType($attribute->type);
-            
+
             // Process value based on type
             $processedValue = $value;
             if ($attribute->type === 'array' && is_array($value)) {
@@ -292,7 +334,7 @@ class TourPackageRepository implements TourPackageInterface
             } elseif ($attribute->type === 'boolean') {
                 $processedValue = filter_var($value, FILTER_VALIDATE_BOOLEAN);
             }
-            
+
             // Create or update attribute value
             AttributeValue::updateOrCreate(
                 [
@@ -306,7 +348,7 @@ class TourPackageRepository implements TourPackageInterface
             );
         }
     }
-    
+
     protected function getValueColumnForType($type)
     {
         switch ($type) {

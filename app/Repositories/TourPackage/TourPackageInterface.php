@@ -23,4 +23,6 @@ interface TourPackageInterface
     public function getByDestinationId($destinationId);
     
     public function getWithAttributes($packageId);
+
+
 }

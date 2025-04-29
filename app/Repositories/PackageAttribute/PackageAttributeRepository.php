@@ -2,8 +2,9 @@
 
 namespace App\Repositories\PackageAttribute;
 
-use App\Models\TourPackage\PackageAttribute;
+use Log;
 use App\Traits\General;
+use App\Models\TourPackage\PackageAttribute;
 
 class PackageAttributeRepository implements PackageAttributeInterface
 {
@@ -27,22 +28,37 @@ class PackageAttributeRepository implements PackageAttributeInterface
     {
         return $this->model->findOrFail($criteria);
     }
+    public function getBySlug($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
+
 
     public function insert(array $data)
     {
         try {
-            // Convert array options to JSON if present
+            Log::info('PackageAttribute insert data', ['data' => $data]);
+            
             if (isset($data['options']) && is_array($data['options'])) {
-                $data['options'] = json_encode($data['options']);
+                $data['options'] = array_filter($data['options']);
+                
+                if (!empty($data['options'])) {
+                    $data['options'] = json_encode($data['options']);
+                } else {
+                    $data['options'] = null; 
+                }
             }
             
-            if ($this->model->create($data)) {
-                return true;
-            }
+            $result = $this->model->create($data);
+            
+            Log::info('PackageAttribute created successfully', ['id' => $result->id]);
+            
+            return true;
         } catch (\Exception $e) {
+            Log::error('Failed to create PackageAttribute: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
             return false;
         }
-        return false;
     }
 
     public function update(array $data, $id)

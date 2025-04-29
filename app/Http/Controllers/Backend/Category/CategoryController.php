@@ -36,7 +36,7 @@ class CategoryController extends BackendController
     public function create(Request $request)
     {
         $this->checkAuthorization($request->user(), 'categories_create');
-        $this->data('courseData', $this->cat->getParentData());
+        $this->data('parents', $this->cat->getParentData());
         $this->data('availableAttributes', $this->atr->getAll());
         return view($this->pagePath . 'category.create', $this->data);
     }
@@ -46,9 +46,31 @@ class CategoryController extends BackendController
         $this->checkAuthorization($request->user(), 'categories_create');
         $data = $request->all();
         $data['slug'] = $this->make_slug($request->name);
+        $data['status'] = $request->has('status') ? 1 : 0;
+        $data['is_main'] = $request->has('is_main') ? 1 : 0;
+        
         $result = $this->cat->insert($data);
-    
+        
         if ($result) {
+            // Handle the attribute associations
+            $category = \App\Models\Category\Category::where('slug', $data['slug'])->first();
+            
+            if ($category && $request->has('attribute_ids')) {
+                $syncData = [];
+                
+                // Fix: Use input() method with default empty array
+                foreach ($request->input('attribute_ids', []) as $attributeId) {
+                    $syncData[$attributeId] = [
+                        'is_required' => $request->has("is_required.$attributeId") ? 1 : 0,
+                        'is_featured' => $request->has("is_filterable.$attributeId") ? 1 : 0,
+                        'display_order' => $request->input("display_order.$attributeId", 0),
+                    ];
+                }
+                
+                // Sync the attributes
+                $category->attributes()->sync($syncData);
+            }
+            
             return redirect()->route('manage-category.index')->with('success', 'Category was successfully created');
         } else {
             return redirect()->back()->with('error', 'Category could not be created');
@@ -68,17 +90,11 @@ class CategoryController extends BackendController
     {
         $this->checkAuthorization(auth()->user(), 'categories_edit');
         $this->data('category', $this->cat->getById($id));
-        $this->data('courseData', $this->cat->getParentData());
+        $this->data('parents', $this->cat->getParentData());
         $this->data('parentId', $this->cat->getById($id)->parent_id);
-        $attributes = $this->cat->getById($id)->attributes;
-        $sortedAttributes = $attributes->sortBy(function($attribute) {
-            return $attribute->pivot->display_order;
-        });
-        
-        $this->data('attributes', $sortedAttributes);
-                $this->data('availableAttributes', $this->atr->getAll());
-
-        return view($this->pagePath . 'category.update', $this->data);
+        $this->data('availableAttributes', $this->atr->getAll()); // Add this line
+       
+        return view($this->pagePath . 'category.edit', $this->data);
     }
 
     public function update(Request $request, string $id)
@@ -94,12 +110,38 @@ class CategoryController extends BackendController
             }
         ]);
         $data = $request->all();
-
         $data['slug'] = $this->make_slug($request->name);
-        if ($this->cat->update($data, $id)) {
-            return redirect()->route('manage-category.index')->with('success', 'data was updated');
+        $data['status'] = $request->has('status') ? 1 : 0;
+        $data['is_main'] = $request->has('is_main') ? 1 : 0;
+        
+        $result = $this->cat->update($data, $id);
+        
+        if ($result) {
+            // Handle the attribute associations
+            $category = \App\Models\Category\Category::findOrFail($id);
+            
+            if ($request->has('attribute_ids')) {
+                $syncData = [];
+                
+                // Use input() method with default empty array
+                foreach ($request->input('attribute_ids', []) as $attributeId) {
+                    $syncData[$attributeId] = [
+                        'is_required' => $request->has("is_required.$attributeId") ? 1 : 0,
+                        'is_featured' => $request->has("is_filterable.$attributeId") ? 1 : 0, // Map filterable to featured
+                        'display_order' => $request->input("display_order.$attributeId", 0),
+                    ];
+                }
+                
+                // Sync the attributes
+                $category->attributes()->sync($syncData);
+            } else {
+                // If no attributes selected, detach all
+                $category->attributes()->detach();
+            }
+            
+            return redirect()->route('manage-category.index')->with('success', 'Category was successfully updated');
         } else {
-            return redirect()->back()->with('error', 'data was not updated');
+            return redirect()->back()->with('error', 'Category could not be updated');
         }
     }
 
@@ -127,24 +169,24 @@ class CategoryController extends BackendController
         // Use your repository or direct model
         $category = \App\Models\Category\Category::findOrFail($id);
         
-        // Get all available attributes
-        $allAttributes = $this->atr->getAll();
-        
         // Prepare the sync data
         $syncData = [];
         
         if ($request->has('attribute_ids')) {
-            foreach ($request->attribute_ids as $attributeId) {
+            // Fix: Use input() method with default empty array
+            foreach ($request->input('attribute_ids', []) as $attributeId) {
                 $syncData[$attributeId] = [
-                    'is_required' => isset($request->is_required[$attributeId]) ? 1 : 0,
-                    'is_filterable' => isset($request->is_filterable[$attributeId]) ? 1 : 0,
-                    'is_searchable' => isset($request->is_searchable[$attributeId]) ? 1 : 0,
-                    'display_order' => $request->display_order[$attributeId] ?? 0,
+                    'is_required' => $request->has("is_required.$attributeId") ? 1 : 0,
+                    'is_featured' => $request->has("is_filterable.$attributeId") ? 1 : 0, // Map filterable to featured
+                    'display_order' => $request->input("display_order.$attributeId", 0),
                 ];
             }
             
             // Sync the attributes
             $category->attributes()->sync($syncData);
+        } else {
+            // If no attributes selected, detach all
+            $category->attributes()->detach();
         }
         
         return redirect()->route('manage-category.edit', $id)

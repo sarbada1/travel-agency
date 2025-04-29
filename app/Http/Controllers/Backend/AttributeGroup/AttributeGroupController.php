@@ -67,8 +67,10 @@ class AttributeGroupController extends BackendController
     public function update(Request $request, string $id)
     {
         $this->checkAuthorization($request->user(), 'attribute_groups_edit');
-     
-        $result = $this->attributeGroup->update($request->all(), $id);
+     $data=$request->all();
+     $data['active'] = $request->has('active') ? 1 : 0;
+
+        $result = $this->attributeGroup->update($data, $id);
         
         if ($result) {
             return redirect()->route('manage-attribute-group.index')->with('success', 'Attribute Group updated successfully');

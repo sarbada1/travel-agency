@@ -17,4 +17,7 @@ interface PackageAttributeInterface
     public function getByGroup($groupId);
     
     public function getFilterableAttributes();
+
+    public function getBySlug($slug);
+
 }
