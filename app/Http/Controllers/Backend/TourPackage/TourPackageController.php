@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Backend\TourPackage;
 
+use Log;
 use Illuminate\Http\Request;
-use App\Repositories\TourPackage\TourPackageInterface;
 use App\Repositories\Category\CategoryInterface;
-use App\Repositories\PackageAttribute\PackageAttributeInterface;
+use App\Repositories\TourPackage\TourPackageInterface;
+use App\Http\Controllers\Backend\Common\BackendController;
 use App\Http\Requests\TourPackage\TourPackageCreateRequest;
 use App\Http\Requests\TourPackage\TourPackageUpdateRequest;
-use App\Http\Controllers\Backend\Common\BackendController;
+use App\Repositories\PackageAttribute\PackageAttributeInterface;
 
 class TourPackageController extends BackendController
 {
@@ -59,19 +60,51 @@ class TourPackageController extends BackendController
 
     public function store(TourPackageCreateRequest $request)
     {
+      
         $this->checkAuthorization($request->user(), 'tour_packages_create');
+        
+        // Debug request data
+        \Log::info('Tour package submission data:', $request->all());
+        
         $data = $request->all();
-
+    
+        // Make sure we have required fields
+        $requiredFields = ['name', 'duration_days', 'regular_price'];
+        foreach ($requiredFields as $field) {
+            if (empty($data[$field])) {
+                \Log::warning("Missing required field: {$field}");
+                return redirect()->back()
+                    ->with('error', "The {$field} field is required.")
+                    ->withInput();
+            }
+        }
+        
         // Set boolean fields
         $data['is_featured'] = $request->has('is_featured') ? 1 : 0;
         $data['is_popular'] = $request->has('is_popular') ? 1 : 0;
-
-        $result = $this->tourPackage->insert($data);
-
-        if ($result) {
-            return redirect()->route('manage-tour-package.index')->with('success', 'Tour Package created successfully');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create Tour Package')->withInput();
+        
+        // Make sure user_id is set
+        $data['user_id'] = auth()->id();
+    
+        try {
+            $result = $this->tourPackage->insert($data);
+            
+            if ($result) {
+                return redirect()->route('manage-tour-package.index')
+                    ->with('success', 'Tour Package created successfully');
+            } else {
+                Log::error('Tour package insert returned false');
+                return redirect()->back()
+                    ->with('error', 'Failed to create Tour Package')
+                    ->withInput();
+            }
+        } catch (\Exception $e) {
+            \Log::error('Exception during tour package creation: ' . $e->getMessage());
+            \Log::error($e->getTraceAsString());
+            
+            return redirect()->back()
+                ->with('error', 'Error: ' . $e->getMessage())
+                ->withInput();
         }
     }
 
@@ -165,7 +198,7 @@ class TourPackageController extends BackendController
 
         if (!empty($categories)) {
             // Example HTML for category-specific fields
-            $html .= '<div class="card mb-4">';
+            $html .= '<div class="mb-4 card">';
             $html .= '<div class="card-header bg-light"><h5 class="mb-0">Category-Specific Fields</h5></div>';
             $html .= '<div class="card-body"><div class="row">';
 
@@ -205,85 +238,122 @@ class TourPackageController extends BackendController
 
     public function getCategoryAttributes(Request $request)
     {
-        $categories = $request->input('categories', []);
-
-        // In a real implementation, you would query your database for attributes
-        // commonly used with these categories
-        $attributes = [];
-        $html = '';
-
-        if (!empty($categories)) {
-            // For demo, add some sample attributes based on category
-            foreach ($categories as $categoryId) {
-                $category = $this->category->getById($categoryId);
-                if ($category) {
-                    if ($category->name == 'Trekking' || $category->name == 'Hiking') {
-                        $attributes[] = ['id' => 1, 'name' => 'Trek Grade', 'type' => 'text'];
-                        $attributes[] = ['id' => 2, 'name' => 'Trail Condition', 'type' => 'text'];
-                        $attributes[] = ['id' => 3, 'name' => 'Best Season', 'type' => 'text'];
-                    }
-
-                    if ($category->name == 'Tours' || $category->name == 'Sightseeing') {
-                        $attributes[] = ['id' => 4, 'name' => 'Tour Guide Language', 'type' => 'array'];
-                        $attributes[] = ['id' => 5, 'name' => 'Vehicle Type', 'type' => 'text'];
-                    }
-                }
-            }
-
-            // Generate HTML for these attributes
-            if (!empty($attributes)) {
-                foreach ($attributes as $attr) {
-                    $html .= $this->generateAttributeHtml($attr['id'], $attr['name'], $attr['type']);
-                }
-            }
+        $categoryIds = $request->input('categories', []);
+        
+        if (empty($categoryIds)) {
+            return response()->json(['attributes' => [], 'html' => '']);
         }
-
-        return response()->json(['attributes' => $attributes, 'html' => $html]);
+        
+        // Get all attributes associated with the selected categories
+        $categoryAttributes = \DB::table('category_attributes')
+            ->join('package_attributes', 'category_attributes.package_attribute_id', '=', 'package_attributes.id')
+            ->join('attribute_groups', 'package_attributes.attribute_group_id', '=', 'attribute_groups.id')
+            ->whereIn('category_attributes.category_id', $categoryIds)
+            ->select(
+                'package_attributes.id',
+                'package_attributes.name',
+                'package_attributes.slug',
+                'package_attributes.type',
+                'package_attributes.description',
+                'attribute_groups.name as group_name',
+                'category_attributes.is_required',
+                'category_attributes.is_featured as is_filterable',
+                'category_attributes.display_order'
+            )
+            ->orderBy('attribute_groups.name')
+            ->orderBy('category_attributes.display_order')
+            ->get();
+        
+        $html = '';
+        $attributes = [];
+        
+        if ($categoryAttributes->count() > 0) {
+            // Group by attribute group
+            $groupedAttributes = $categoryAttributes->groupBy('group_name');
+            
+            foreach ($groupedAttributes as $groupName => $groupAttributes) {
+                $html .= '<div class="mb-3 card">';
+                $html .= '<div class="card-header bg-light">' . $groupName . '</div>';
+                $html .= '<div class="card-body">';
+                
+                foreach ($groupAttributes as $attr) {
+                    $attributes[] = $attr;
+                    $html .= $this->generateAttributeHtml(
+                        $attr->id, 
+                        $attr->name, 
+                        $attr->type, 
+                        $attr->description,
+                        $attr->is_required
+                    );
+                }
+                
+                $html .= '</div></div>';
+            }
+        } else {
+            $html = '<div class="alert alert-info">No attributes found for the selected categories.</div>';
+        }
+        
+        return response()->json([
+            'attributes' => $attributes,
+            'html' => $html
+        ]);
     }
-
-    private function generateAttributeHtml($id, $name, $type)
+    
+    private function generateAttributeHtml($id, $name, $type, $description = '', $isRequired = false)
     {
+        $requiredStar = $isRequired ? '<span class="text-danger">*</span>' : '';
+        $requiredAttr = $isRequired ? 'required' : '';
+        $descriptionHtml = $description ? '<small class="text-muted d-block">' . $description . '</small>' : '';
+        
         $inputHtml = '';
-
+        
         switch ($type) {
             case 'text':
-                $inputHtml = '<input type="text" name="attribute_' . $id . '" class="form-control">';
+                $inputHtml = '<input type="text" name="attribute_' . $id . '" class="form-control" ' . $requiredAttr . '>';
                 break;
             case 'rich_text':
-                $inputHtml = '<textarea name="attribute_' . $id . '" class="form-control" rows="3"></textarea>';
+                $inputHtml = '<textarea name="attribute_' . $id . '" class="form-control" rows="3" ' . $requiredAttr . '></textarea>';
+                break;
+            case 'number':
+                $inputHtml = '<input type="number" name="attribute_' . $id . '" class="form-control" ' . $requiredAttr . '>';
                 break;
             case 'boolean':
                 $inputHtml = '
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="attribute_' . $id . '" id="attr_' . $id . '" value="1">
-                    <label class="form-check-label" for="attr_' . $id . '">Yes</label>
-                </div>
-            ';
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="attribute_' . $id . '" id="attr_' . $id . '" value="1">
+                        <label class="form-check-label" for="attr_' . $id . '">Yes</label>
+                    </div>
+                ';
+                break;
+            case 'date':
+                $inputHtml = '<input type="date" name="attribute_' . $id . '" class="form-control" ' . $requiredAttr . '>';
                 break;
             case 'array':
+            case 'json':
                 $inputHtml = '
-                <div class="attribute-array-container">
-                    <div class="input-group mb-2">
-                        <input type="text" name="attribute_' . $id . '[]" class="form-control" placeholder="Enter value">
-                        <button type="button" class="btn btn-success add-array-item">+</button>
+                    <div class="attribute-array-container">
+                        <div class="mb-2 input-group">
+                            <input type="text" name="attribute_' . $id . '[]" class="form-control" placeholder="Enter value" ' . $requiredAttr . '>
+                            <button type="button" class="btn btn-success add-array-item">+</button>
+                        </div>
                     </div>
-                </div>
-            ';
+                ';
                 break;
             default:
-                $inputHtml = '<input type="text" name="attribute_' . $id . '" class="form-control">';
+                $inputHtml = '<input type="text" name="attribute_' . $id . '" class="form-control" ' . $requiredAttr . '>';
         }
-
+        
         return '
-        <div class="mb-3 p-3 border rounded attribute-field" data-id="' . $id . '">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <label for="attribute_' . $id . '">' . $name . '</label>
-                <button type="button" class="btn btn-sm btn-danger remove-attribute">
-                    <i class="bi bi-trash"></i>
-                </button>
+            <div class="p-3 mb-3 border rounded attribute-field" data-id="' . $id . '">
+                <div class="mb-2 d-flex justify-content-between align-items-center">
+                    <label for="attribute_' . $id . '">' . $name . ' ' . $requiredStar . '</label>
+                    <button type="button" class="btn btn-sm btn-danger remove-attribute">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                ' . $descriptionHtml . '
+                ' . $inputHtml . '
             </div>
-            ' . $inputHtml . '
-        </div>
-    ';
+        ';
     }
 }

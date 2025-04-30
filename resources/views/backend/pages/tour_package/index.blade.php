@@ -2,7 +2,7 @@
 @section('content')
     <main id="main" class="main">
         <section class="section dashboard">
-            <div class="card py-3">
+            <div class="py-3 card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -40,7 +40,7 @@
                                         <td>{{$key+1}}</td>
                                         <td>
                                             @if($package->featured_image)
-                                                <img src="{{asset($package->featured_image)}}" alt="{{$package->name}}" width="60">
+                                                <img src="{{url($package->featured_image)}}" alt="{{$package->name}}" width="60">
                                             @else
                                                 <span class="badge bg-secondary">No Image</span>
                                             @endif

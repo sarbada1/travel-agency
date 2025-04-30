@@ -2,15 +2,12 @@
 
 namespace App\Models\TourPackage;
 
-use App\Models\User;
-use App\Models\Category;
-use App\Models\Destination;
-use App\Models\Activity;
-use App\Models\Booking;
-use App\Models\Review;
+use App\Models\User\User;
+
 use App\Traits\HasAttributes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TourPackage extends Model
 {
@@ -38,25 +35,18 @@ class TourPackage extends Model
     {
         return $this->belongsToMany(Category::class);
     }
-    
-    public function destinations()
+    public function attributeValues()
     {
-        return $this->belongsToMany(Destination::class);
+        return $this->morphMany(AttributeValue::class, 'attributable');
     }
     
-    public function activities()
-    {
-        return $this->belongsToMany(Activity::class)
-            ->withPivot('is_optional', 'additional_cost');
-    }
+    // public function bookings()
+    // {
+    //     return $this->hasMany(Booking::class);
+    // }
     
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
-    }
-    
-    public function reviews()
-    {
-        return $this->morphMany(Review::class, 'reviewable');
-    }
+    // public function reviews()
+    // {
+    //     return $this->morphMany(Review::class, 'reviewable');
+    // }
 }

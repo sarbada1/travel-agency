@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_attribute_id')->constrained()->onDelete('cascade');
+            $table->morphs('attributable');
             $table->longText('rich_text_value')->nullable();
             $table->json('json_value')->nullable();
             $table->integer('display_order')->default(0); 

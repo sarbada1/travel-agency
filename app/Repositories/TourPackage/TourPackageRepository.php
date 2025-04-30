@@ -6,30 +6,33 @@ use App\Traits\General;
 use Illuminate\Support\Str;
 use App\Models\TourPackage\TourPackage;
 use App\Services\AttributeValueService;
-use Illuminate\Support\Facades\Request;
 use App\Models\TourPackage\AttributeValue;
+use App\Models\TourPackage\PackageAttribute;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TourPackageRepository implements TourPackageInterface
 {
     use General;
+    
     protected $attributeValueService;
-
     private $model;
 
-    public function __construct(TourPackage $model, AttributeValueService $attributeValueService)
+    public function __construct(TourPackage $model, AttributeValueService $attributeValueService = null)
     {
         $this->model = $model;
-        $this->attributeValueService = $attributeValueService;
+        $this->attributeValueService = $attributeValueService ?? new AttributeValueService();
     }
 
     public function getAll()
     {
-        return $this->model->with(['categories', 'destinations'])->get();
+        return $this->model->with(['categories'])->get();
     }
 
     public function getById($criteria)
     {
-        return $this->model->with(['categories', 'destinations', 'activities'])->findOrFail($criteria);
+        return $this->model->with(['categories'])->findOrFail($criteria);
     }
 
     private function updateFile($id, $data)
@@ -41,28 +44,17 @@ class TourPackageRepository implements TourPackageInterface
     {
         try {
             DB::beginTransaction();
-
+    
             // Extract category, destination, and activity IDs
             $categories = $data['categories'] ?? [];
             unset($data['categories']);
-
+    
             $destinations = $data['destinations'] ?? [];
             unset($data['destinations']);
-
+    
             $activities = $data['activities'] ?? [];
             unset($data['activities']);
-
-            // Extract itinerary data
-            $itinerary = $data['itinerary'] ?? [];
-            unset($data['itinerary']);
-
-            // Extract inclusions and exclusions
-            $inclusions = $data['inclusions'] ?? [];
-            unset($data['inclusions']);
-
-            $exclusions = $data['exclusions'] ?? [];
-            unset($data['exclusions']);
-
+    
             // Extract all dynamic attributes
             $attributeValues = [];
             foreach ($data as $key => $value) {
@@ -72,50 +64,57 @@ class TourPackageRepository implements TourPackageInterface
                     unset($data[$key]);
                 }
             }
-
+    
+            // Log what we're about to save
+            Log::info('About to create tour package with data:', [
+                'data' => array_keys($data),
+                'categories' => count($categories),
+                'destinations' => count($destinations),
+                'attributeValues' => count($attributeValues)
+            ]);
+    
+            // Set default values for critical fields if missing
+            if (empty($data['slug']) && !empty($data['name'])) {
+                $data['slug'] = Str::slug($data['name']);
+            }
+            
+            if (empty($data['duration_days'])) {
+                $data['duration_days'] = 1;
+            }
+            
+            if (empty($data['regular_price'])) {
+                $data['regular_price'] = 0;
+            }
+    
             // Create the tour package
             $tourPackage = $this->model->create($data);
-
-            // Attach categories, destinations, and activities
+            Log::info('Tour package created with ID: ' . $tourPackage->id);
+    
+            // Attach categories if any
             if (!empty($categories)) {
                 $tourPackage->categories()->attach($categories);
+                Log::info('Categories attached: ' . implode(', ', $categories));
             }
-
+    
+            // Attach destinations if any
             if (!empty($destinations)) {
-                $tourPackage->categories()->attach($destinations); // Destinations are stored in categories
+                $tourPackage->categories()->attach($destinations);
+                Log::info('Destinations attached: ' . implode(', ', $destinations));
             }
-
-            // Save itinerary data
-            if (!empty($itinerary)) {
-                $this->attributeValueService->saveItinerary($tourPackage->id, $itinerary);
+    
+            // Save attribute values if any
+            if (!empty($attributeValues)) {
+                $this->saveAttributeValues($tourPackage, $attributeValues);
+                Log::info('Attribute values saved: ' . count($attributeValues));
             }
-
-            // Save inclusions
-            if (!empty($inclusions)) {
-                $this->attributeValueService->saveInclusions($tourPackage->id, $inclusions);
-            }
-
-            // Save exclusions
-            if (!empty($exclusions)) {
-                $this->attributeValueService->saveExclusions($tourPackage->id, $exclusions);
-            }
-
-            // Save all dynamic attributes
-            foreach ($attributeValues as $attributeId => $value) {
-                $this->attributeValueService->saveAttributeValue(
-                    $tourPackage->id,
-                    $attributeId,
-                    $value
-                );
-            }
-
+    
             DB::commit();
             return $tourPackage;
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Failed to create tour package: ' . $e->getMessage());
             Log::error($e->getTraceAsString());
-            return false;
+            throw $e; // Re-throw for the controller to handle
         }
     }
 
@@ -175,32 +174,13 @@ class TourPackageRepository implements TourPackageInterface
                 $tourPackage->categories()->attach($destinations);
             }
 
-            // Delete existing attributes and save new values
-            AttributeValue::where('tour_package_id', $tourPackage->id)->delete();
-
-            // Save itinerary data
-            if (!empty($itinerary)) {
-                $this->attributeValueService->saveItinerary($tourPackage->id, $itinerary);
-            }
-
-            // Save inclusions
-            if (!empty($inclusions)) {
-                $this->attributeValueService->saveInclusions($tourPackage->id, $inclusions);
-            }
-
-            // Save exclusions
-            if (!empty($exclusions)) {
-                $this->attributeValueService->saveExclusions($tourPackage->id, $exclusions);
-            }
+            // Delete existing attribute values
+            AttributeValue::where('attributable_id', $tourPackage->id)
+                ->where('attributable_type', get_class($tourPackage))
+                ->delete();
 
             // Save all dynamic attributes
-            foreach ($attributeValues as $attributeId => $value) {
-                $this->attributeValueService->saveAttributeValue(
-                    $tourPackage->id,
-                    $attributeId,
-                    $value
-                );
-            }
+            $this->saveAttributeValues($tourPackage, $attributeValues);
 
             DB::commit();
             return true;
@@ -208,6 +188,7 @@ class TourPackageRepository implements TourPackageInterface
             DB::rollBack();
             Log::error('Failed to update tour package: ' . $e->getMessage());
             Log::error($e->getTraceAsString());
+            throw $e; // Re-throw to see the error during development
             return false;
         }
     }
@@ -216,10 +197,57 @@ class TourPackageRepository implements TourPackageInterface
     {
         $tourPackage = $this->model->with(['categories', 'user'])->findOrFail($id);
 
-        // Get all attributes for this package, grouped by attribute group
-        $tourPackage->attribute_groups = $this->attributeValueService->getGroupedAttributes($id);
-
+        // Get all attributes for this package
+        $attributes = AttributeValue::where('attributable_id', $tourPackage->id)
+            ->where('attributable_type', get_class($tourPackage))
+            ->with(['packageAttribute', 'packageAttribute.attributeGroup'])
+            ->get();
+        
+        // Group attributes by group
+        $grouped = [];
+        foreach ($attributes as $attribute) {
+            $groupName = $attribute->packageAttribute->attributeGroup->name ?? 'Other';
+            $groupSlug = $attribute->packageAttribute->attributeGroup->slug ?? 'other';
+            
+            if (!isset($grouped[$groupSlug])) {
+                $grouped[$groupSlug] = [
+                    'name' => $groupName,
+                    'attributes' => []
+                ];
+            }
+            
+            $grouped[$groupSlug]['attributes'][] = [
+                'id' => $attribute->packageAttribute->id,
+                'name' => $attribute->packageAttribute->name,
+                'slug' => $attribute->packageAttribute->slug,
+                'type' => $attribute->packageAttribute->type,
+                'value' => $this->getAttributeValue($attribute)
+            ];
+        }
+        
+        $tourPackage->attribute_groups = $grouped;
         return $tourPackage;
+    }
+
+    protected function getAttributeValue($attribute)
+    {
+        $type = $attribute->packageAttribute->type ?? 'text';
+        
+        switch ($type) {
+            case 'text':
+                return $attribute->text_value;
+            case 'rich_text':
+                return $attribute->rich_text_value;
+            case 'array':
+            case 'json':
+                return $attribute->json_value ? json_decode($attribute->json_value, true) : null;
+            case 'boolean':
+                return (bool)$attribute->boolean_value;
+            case 'number':
+                return $attribute->numeric_value;
+            default:
+                return $attribute->text_value;
+        }
     }
 
     public function delete($id)
@@ -270,6 +298,11 @@ class TourPackageRepository implements TourPackageInterface
             }
         }
 
+        // Delete attribute values
+        AttributeValue::where('attributable_id', $tourPackage->id)
+            ->where('attributable_type', get_class($tourPackage))
+            ->delete();
+
         if ($tourPackage->delete()) {
             return true;
         } else {
@@ -313,12 +346,10 @@ class TourPackageRepository implements TourPackageInterface
             ->get();
     }
 
-
-
     private function saveAttributeValues($tourPackage, $attributeData)
     {
         foreach ($attributeData as $attributeId => $value) {
-            $attribute = \App\Models\TourPackage\PackageAttribute::find($attributeId);
+            $attribute = PackageAttribute::find($attributeId);
             if (!$attribute) {
                 continue;
             }
@@ -327,25 +358,19 @@ class TourPackageRepository implements TourPackageInterface
 
             // Process value based on type
             $processedValue = $value;
-            if ($attribute->type === 'array' && is_array($value)) {
-                $processedValue = json_encode($value);
-            } elseif ($attribute->type === 'json' && is_array($value)) {
+            if (($attribute->type === 'array' || $attribute->type === 'json') && is_array($value)) {
                 $processedValue = json_encode($value);
             } elseif ($attribute->type === 'boolean') {
-                $processedValue = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                $processedValue = filter_var($value, FILTER_VALIDATE_BOOLEAN) ? 1 : 0;
             }
 
-            // Create or update attribute value
-            AttributeValue::updateOrCreate(
-                [
-                    'package_attribute_id' => $attributeId,
-                    'attributable_id' => $tourPackage->id,
-                    'attributable_type' => get_class($tourPackage),
-                ],
-                [
-                    $valueColumn => $processedValue
-                ]
-            );
+            // Create attribute value
+            AttributeValue::create([
+                'package_attribute_id' => $attributeId,
+                'attributable_id' => $tourPackage->id,
+                'attributable_type' => get_class($tourPackage),
+                $valueColumn => $processedValue
+            ]);
         }
     }
 
@@ -357,13 +382,12 @@ class TourPackageRepository implements TourPackageInterface
             case 'rich_text':
                 return 'rich_text_value';
             case 'array':
-                return 'array_value';
             case 'json':
                 return 'json_value';
             case 'boolean':
                 return 'boolean_value';
             case 'number':
-                return 'number_value';
+                return 'numeric_value'; // Changed from 'number_value' to 'numeric_value'
             case 'date':
                 return 'date_value';
             default:
