@@ -2,8 +2,9 @@
 
 namespace App\Repositories\Category;
 
-use App\Models\Category\Category;
 use App\Traits\General;
+use Illuminate\Support\Str;
+use App\Models\Category\Category;
 use Illuminate\Support\Facades\Request;
 
 class CategoryRepository implements CategoryInterface
@@ -17,7 +18,10 @@ class CategoryRepository implements CategoryInterface
     {
         $this->model = $model;
     }
-
+    public function query()
+    {
+        return $this->model->query();
+    }
     public function getAll()
     {
         return $this->model->all();
@@ -27,6 +31,10 @@ class CategoryRepository implements CategoryInterface
     {
         return $this->model->findOrFail($criteria);
     }
+    public function getBySlug($slug)
+    {
+        return $this->model->where('slug',$slug)->first();
+    }
 
     private function updateFile($id, $data)
     {
@@ -34,35 +42,67 @@ class CategoryRepository implements CategoryInterface
 
     }
 
-    public function insert(array $data)
-    {
-        try {
-            $data['user_id'] = auth()->user()->id;
-            if ($this->model->create($data)) {
-                $tableName = $this->model->getTable();
-                $lastId = $this->model->latest()->first()->id;
-                $filePath = 'uploads/' . $tableName;
-                $fileData['image'] = $this->customFileUpload($filePath);
-                $this->updateFile($lastId, $fileData);
-                return true;
-            }
-        } catch (\Exception $e) {
-            return false;
+
+public function insert(array $data)
+{
+    $data['user_id'] = auth()->id();
+    $data['slug'] = Str::slug($data['slug']);
+    
+    // Extract image file from data before creating the record
+    $imageFile = null;
+    if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+        $imageFile = $data['image'];
+        unset($data['image']); // Remove from data array to prevent storing temp path
+    }
+    
+    // Create the record
+    $category = $this->model->create($data);
+    
+    if ($category) {
+        // Now handle the file upload if we have an image
+        if ($imageFile) {
+            $tableName = $this->model->getTable();
+            $filePath = 'uploads/' . $tableName;
+            $fileData['image'] = $this->customFileUpload($filePath, 'image', $imageFile);
+            $category->update($fileData);
         }
+        
+        return true;
+    } else {
         return false;
-
     }
+}
 
-    public function update(array $data, $id)
-    {
-
-        $data['user_id'] = auth()->user()->id;
-        if ($this->model->findOrFail($id)->update($data)) {
-            return true;
-        } else {
-            return false;
+public function update(array $data, $id)
+{
+    $data['user_id'] = auth()->user()->id;
+    
+    // Extract image file from data before updating the record
+    $imageFile = null;
+    if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+        $imageFile = $data['image'];
+        unset($data['image']); // Remove from data array to prevent storing temp path
+    }
+    
+    // Update the category
+    $category = $this->model->findOrFail($id);
+    $category->update($data);
+    
+    // Now handle the file upload if we have an image
+    if ($imageFile) {
+        // Delete old image if it exists
+        if ($category->image && file_exists(public_path($category->image))) {
+            unlink(public_path($category->image));
         }
+        
+        $tableName = $this->model->getTable();
+        $filePath = 'uploads/' . $tableName;
+        $fileData['image'] = $this->customFileUpload($filePath, 'image', $imageFile);
+        $category->update($fileData);
     }
+    
+    return true;
+}
     public function delete($id)
     {
         $http_s = "";

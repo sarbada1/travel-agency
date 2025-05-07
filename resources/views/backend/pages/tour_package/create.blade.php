@@ -138,21 +138,23 @@
                                                         <h5 class="mb-0">Destinations</h5>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="p-3 border rounded destinations-container"
-                                                            style="max-height: 200px; overflow-y: auto;">
-                                                            @foreach ($destinations as $destination)
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="destinations[]"
-                                                                        id="destination_{{ $destination->id }}"
-                                                                        value="{{ $destination->id }}"
-                                                                        {{ is_array(old('destinations')) && in_array($destination->id, old('destinations')) ? 'checked' : '' }}>
-                                                                    <label class="form-check-label"
-                                                                        for="destination_{{ $destination->id }}">
-                                                                        {{ $destination->name }}
-                                                                    </label>
+                                                        <div class="p-3 border rounded destinations-container"  style="max-height: 200px; overflow-y: auto;">
+                                                            <div class="mb-3">
+                                                                <label>Select destinations for this package:</label>
+                                                                <div class="mt-2">
+                                                                    @foreach($destinations as $destination)
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" name="destinations[]" value="{{ $destination->id }}" 
+                                                                               class="form-check-input destination-checkbox" 
+                                                                               id="destination_{{ $destination->id }}"
+                                                                               @if(isset($tourPackage) && $tourPackage->destinations->contains($destination->id)) checked @endif>
+                                                                        <label class="form-check-label" for="destination_{{ $destination->id }}">
+                                                                            {{ $destination->name }}
+                                                                        </label>
+                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
-                                                            @endforeach
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -469,9 +471,9 @@
 
                                                     <div class="mb-3 col-md-12 form-group">
                                                         <label for="gallery_images">Gallery Images:</label>
-                                                        <input type="file" name="gallery_images[]" id="gallery_images"
-                                                            class="form-control" multiple>
+                                                        <input type="file" name="gallery_images[]" id="gallery_images" class="form-control" multiple>
                                                         <div id="gallery-images-preview" class="mt-2 row"></div>
+                                                        <small class="form-text text-muted">Select multiple images for the package gallery (max 10)</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -794,66 +796,7 @@
                 $(this).closest('.attribute-field').remove();
             });
 
-            // ITINERARY
-            // Add itinerary day
-            $('#add-itinerary-day').on('click', function() {
-                const dayCount = $('.itinerary-day').length;
-                const newDay = `
-                <div class="p-3 mb-3 border rounded itinerary-day">
-                    <div class="mb-2 d-flex justify-content-end">
-                        <button type="button" class="btn btn-sm btn-danger remove-itinerary-day">
-                            <i class="bi bi-trash"></i> Remove
-                        </button>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Day #</label>
-                            <input type="number" name="itinerary[${dayCount}][day]" class="form-control" value="${dayCount + 1}" min="1">
-                        </div>
-                        <div class="col-md-10">
-                            <label>Title</label>
-                            <input type="text" name="itinerary[${dayCount}][title]" class="form-control" placeholder="Day title">
-                        </div>
-                        <div class="mt-2 col-md-12">
-                            <label>Description</label>
-                            <textarea name="itinerary[${dayCount}][description]" class="form-control" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-            `;
-                $('#itinerary-container').append(newDay);
-            });
 
-            // Remove itinerary day
-            $(document).on('click', '.remove-itinerary-day', function() {
-                $(this).closest('.itinerary-day').remove();
-            });
-
-            // INCLUSIONS & EXCLUSIONS
-            // Add inclusion
-            $('.add-inclusion').on('click', function() {
-                $('.inclusion-container').append(`
-                <div class="mb-2 input-group">
-                    <input type="text" name="inclusions[]" class="form-control" placeholder="Add inclusion item">
-                    <button type="button" class="btn btn-danger remove-item">-</button>
-                </div>
-            `);
-            });
-
-            // Add exclusion
-            $('.add-exclusion').on('click', function() {
-                $('.exclusion-container').append(`
-                <div class="mb-2 input-group">
-                    <input type="text" name="exclusions[]" class="form-control" placeholder="Add exclusion item">
-                    <button type="button" class="btn btn-danger remove-item">-</button>
-                </div>
-            `);
-            });
-
-            // Remove inclusion/exclusion item
-            $(document).on('click', '.remove-item', function() {
-                $(this).closest('.input-group').remove();
-            });
 
             // Add array item
             $(document).on('click', '.add-array-item', function() {

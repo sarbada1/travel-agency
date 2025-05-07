@@ -124,6 +124,25 @@
 
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#components-banner" data-bs-toggle="collapse"
+                        href="#">
+                        <i class="bi bi-folder2-open"></i><span>Banner</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-banner" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="{{ route('banner.index') }}">
+                                <i class="bi bi-circle"></i><span>Manage Banner</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('banner.create') }}">
+                                <i class="bi bi-circle"></i><span>Add Banner</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
             
 
 

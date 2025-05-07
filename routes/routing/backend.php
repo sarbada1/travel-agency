@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'company-backend', 'middlewa
     require_once dirname(__FILE__) . '/packageattribute/packageattribute.php';
     require_once dirname(__FILE__) . '/tourpackage/tourpackage.php';
     require_once dirname(__FILE__) . '/category/category.php';
+    require_once dirname(__FILE__) . '/banner/banner.php';
     require_once dirname(__FILE__) . '/team/team.php';
     require_once dirname(__FILE__) . '/blog/blog.php';
     require_once dirname(__FILE__) . '/testimonial/testimonial.php';

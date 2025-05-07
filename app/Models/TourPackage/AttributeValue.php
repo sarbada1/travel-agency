@@ -2,88 +2,73 @@
 
 namespace App\Models\TourPackage;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AttributeValue extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'package_attribute_id',
         'attributable_id',
         'attributable_type',
         'text_value',
         'rich_text_value',
-        'long_text_value',
         'numeric_value',
-        'date_value',
         'boolean_value',
         'json_value',
         'array_value',
-        'item_key',
-        'display_order'
+        'long_text_value',
+        'display_order',
+        'item_key'
     ];
 
-    protected $casts = [
-        'boolean_value' => 'boolean',
-        'numeric_value' => 'float',
-        'date_value' => 'date'
-    ];
-
-    /**
-     * Get the package attribute that owns the value.
-     */
     public function packageAttribute()
     {
-        return $this->belongsTo(PackageAttribute::class, 'package_attribute_id');
+        return $this->belongsTo(PackageAttribute::class);
     }
 
-    /**
-     * Get the owner model of the attribute value.
-     */
     public function attributable()
     {
         return $this->morphTo();
     }
 
     /**
-     * Get the appropriate value based on attribute type
+     * Get the value of this attribute based on its type
      */
     public function getValue()
     {
-        $type = $this->packageAttribute->type ?? 'text';
-        
-        switch ($type) {
-            case 'text':
-                return $this->text_value;
-                
-            case 'rich_text':
-                return $this->rich_text_value;
-                
-            case 'long_text':
-                return $this->long_text_value;
-                
+        // Determine which column has the value based on packageAttribute type
+        $attribute = $this->packageAttribute;
+
+        if (!$attribute) {
+            return null;
+        }
+
+        switch ($attribute->type) {
+            case 'boolean':
+                return (bool) $this->boolean_value;
+
             case 'number':
                 return $this->numeric_value;
-                
-            case 'date':
-                return $this->date_value;
-                
-            case 'boolean':
-                return $this->boolean_value;
-                
-            case 'json':
+
+            case 'rich_text':
+                return $this->rich_text_value ?? $this->text_value ?? $this->long_text_value;
+
             case 'array':
+            case 'json':
                 if ($this->json_value) {
-                    return json_decode($this->json_value, true);
-                } elseif ($this->array_value) {
-                    return json_decode($this->array_value, true);
+                    try {
+                        $decoded = json_decode($this->json_value, true);
+                        return is_array($decoded) ? $decoded : [$this->json_value];
+                    } catch (\Exception $e) {
+                        \Log::warning("Error decoding JSON value: " . $e->getMessage());
+                        return [$this->json_value];
+                    }
                 }
-                return null;
-                
+                return [];
+
             default:
-                return $this->text_value;
+                // For text and all other types
+                return $this->text_value ?? $this->long_text_value ?? $this->rich_text_value ?? null;
         }
     }
 }

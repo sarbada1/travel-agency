@@ -1,153 +1,412 @@
-/* Custom CSS for AdSpot */
-
-/* Global Styles */
 :root {
-    --primary-color: #4361ee;
-    --secondary-color: #3f37c9;
-    --accent-color: #f72585;
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
     --light-color: #f8f9fa;
     --dark-color: #212529;
-    --gray-color: #6c757d;
-    --success-color: #198754;
-    --info-color: #0dcaf0;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
+    --transition: all 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--dark-color);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
 }
 
-/* Hero Section */
-.hero-section {
-    background-color: #f8f9fa;
-    padding: 80px 0;
+/* Animation Classes */
+.slide-in-left {
+    animation: slideInLeft 1s ease-out;
 }
 
-/* Category Cards */
-.category-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.slide-in-right {
+    animation: slideInRight 1s ease-out;
 }
 
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+.bounce-in {
+    animation: bounceIn 1s ease;
 }
 
-.category-icon {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Listing Cards */
-.listing-card, .job-card, .blog-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Keyframes */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.listing-card:hover, .job-card:hover, .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.listing-card .card-img-top, .blog-card .card-img-top {
-    height: 200px;
+@keyframes bounceIn {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Header Styles */
+.top-header {
+    font-size: 0.9rem;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+.main-header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 50px;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Mega Menu Styles */
+.has-megamenu {
+    position: static !important;
+}
+
+.megamenu {
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.col-megamenu {
+    padding: 0 15px;
+}
+
+.col-megamenu .title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.col-megamenu ul li {
+    margin-bottom: 8px;
+}
+
+.col-megamenu .dropdown-item {
+    padding: 5px 0;
+    font-size: 0.9rem;
+}
+
+.col-megamenu .dropdown-item:hover {
+    background: transparent;
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.featured-tour {
+    transition: var(--transition);
+}
+
+.featured-tour:hover {
+    transform: translateY(-3px);
+}
+
+.object-fit-cover {
     object-fit: cover;
 }
 
-/* Search Box */
-.search-box {
-    border-radius: 10px;
+/* Hero Banner */
+.hero-banner {
+    position: relative;
 }
 
-/* Buttons */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.carousel-item {
+    height: 600px;
 }
 
-.btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
 }
 
-.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+.carousel-caption {
+    bottom: 20%;
+    z-index: 2;
 }
 
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.carousel-caption h1 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Ad Banners */
-.ad-banner {
-    transition: all 0.3s ease;
+.carousel-caption p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.ad-banner:hover {
-    opacity: 0.95;
+/* Search Form */
+.search-form-container {
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
 }
 
-/* Blog Section */
-.blog-card .card-title {
-    font-weight: 600;
-    line-height: 1.4;
+/* Destination Section */
+.destination-item {
+    transition: var(--transition);
 }
 
-.blog-card .badge {
-    font-size: 0.75rem;
-    padding: 0.35em 0.65em;
+.hover-scale:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Jobs Section */
-.company-name {
-    font-size: 0.9rem;
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Package Section */
+.package-duration {
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
-.job-card .badge {
-    font-size: 0.75rem;
-    padding: 0.35em 0.65em;
+.package-features .badge {
+    font-weight: 400;
 }
 
-/* Responsive adjustments */
+/* Features Section */
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* Testimonials */
+.testimonial-item {
+    min-height: 300px;
+}
+
+.testimonial-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.testimonial-text {
+    font-style: italic;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+/* Blog Section */
+.blog-meta {
+    font-size: 0.8rem;
+}
+
+/* News Section */
+.news-section .card {
+    transition: var(--transition);
+}
+
+.news-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.news-meta .badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* Newsletter */
+.newsletter-form .form-control {
+    height: 50px;
+}
+
+.newsletter-form .btn {
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Footer */
+.footer-links a, .footer-contact li {
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    padding-left: 5px;
+    opacity: 0.8;
+}
+
+.payment-methods i {
+    color: #fff;
+    opacity: 0.8;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .megamenu {
+        padding: 15px;
+    }
+    
+    .carousel-item {
+        height: 450px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+}
+
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 40px 0;
+    .carousel-item {
+        height: 350px;
     }
-
-    h1.display-4 {
-        font-size: 2.5rem;
+    
+    .carousel-caption h1 {
+        font-size: 2rem;
     }
-
-    .blog-card .card-title, .job-card .card-title {
-        font-size: 1.1rem;
+    
+    .search-form-container {
+        margin-top: 20px;
+    }
+    
+    .social-links, .contact-info {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 10px;
     }
 }
 
 @media (max-width: 576px) {
-    h1.display-4 {
-        font-size: 2rem;
+    .carousel-item {
+        height: 300px;
     }
-
-    .search-box {
-        padding: 15px;
+    
+    .carousel-caption h1 {
+        font-size: 1.5rem;
     }
-
-    .blog-card .card-title, .job-card .card-title {
+    
+    .carousel-caption p {
         font-size: 1rem;
     }
+    
+    .carousel-caption .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
 }
 
-/* Footer */
-footer a:hover {
-    color: #fff !important;
+ /* pagination */
+
+ .destination-img {
+    height: 240px;
+    object-fit: cover;
 }
-.article-content {
-    overflow-wrap: break-word;
-  
+
+/* Pagination custom styling */
+.pagination {
+    margin-bottom: 0;
+}
+
+.page-item.active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.page-link {
+    color: var(--bs-primary);
+    padding: 0.5rem 1rem;
+}
+
+.page-link:hover {
+    color: var(--bs-primary);
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        text-align: center;
+    }
+    
+    .page-header img {
+        margin-top: 20px;
+        float: none !important;
+    }
+    
+    .pagination .page-link {
+        padding: 0.4rem 0.8rem;
+    }
 }

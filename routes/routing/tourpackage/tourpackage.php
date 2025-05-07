@@ -16,6 +16,4 @@ Route::get('search-attributes', [PackageAttributeController::class, 'searchAttri
 Route::post('create-attribute', [PackageAttributeController::class, 'createAttributeAjax'])->name('create-attribute');
 Route::get('get-attribute-info/{id}', [PackageAttributeController::class, 'getAttributeInfo'])->name('get-attribute-info');
 
-
-
-
+Route::get('/get-package-attributes/{id}', [TourPackageController::class, 'getPackageAttributes'])->name('get-package-attributes');

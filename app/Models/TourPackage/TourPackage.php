@@ -39,6 +39,15 @@ class TourPackage extends Model
     {
         return $this->morphMany(AttributeValue::class, 'attributable');
     }
+    public function destinations()
+    {
+        return $this->belongsToMany(
+            \App\Models\Category\Category::class,
+            'tour_package_destinations',
+            'tour_package_id',
+            'destination_id'
+        )->where('page_type', 'destination');
+    }
     
     // public function bookings()
     // {

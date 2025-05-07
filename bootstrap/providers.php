@@ -1,7 +1,5 @@
 <?php
 
-use App\Providers\Category\ItemAttributeValueServiceProvider;
-use App\Providers\Category\ItemServiceProvider;
 
 return [
     App\Providers\AccountType\AccountTypeServiceProvider::class,
@@ -26,5 +24,6 @@ return [
     App\Providers\PackageAttribute\PackageAttributeServiceProvider::class,
     App\Providers\AttributeValue\AttributeValueServiceProvider::class,
     App\Providers\TourPackage\TourPackageServiceProvider::class,
+    App\Providers\ViewServiceProvider::class,
     
 ];

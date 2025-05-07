@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 class TourPackageRepository implements TourPackageInterface
 {
     use General;
-    
+
     protected $attributeValueService;
     private $model;
 
@@ -42,197 +42,257 @@ class TourPackageRepository implements TourPackageInterface
 
     public function insert(array $data)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
-    
-            // Extract category, destination, and activity IDs
-            $categories = $data['categories'] ?? [];
-            unset($data['categories']);
-    
-            $destinations = $data['destinations'] ?? [];
-            unset($data['destinations']);
-    
-            $activities = $data['activities'] ?? [];
-            unset($data['activities']);
-    
-            // Extract all dynamic attributes
-            $attributeValues = [];
+            $attributeData = [];
             foreach ($data as $key => $value) {
                 if (strpos($key, 'attribute_') === 0) {
                     $attributeId = substr($key, strlen('attribute_'));
-                    $attributeValues[$attributeId] = $value;
-                    unset($data[$key]);
+                    $attributeData[$attributeId] = $value;
+                    unset($data[$key]); // Remove from main data array
                 }
             }
-    
-            // Log what we're about to save
-            Log::info('About to create tour package with data:', [
-                'data' => array_keys($data),
-                'categories' => count($categories),
-                'destinations' => count($destinations),
-                'attributeValues' => count($attributeValues)
-            ]);
-    
-            // Set default values for critical fields if missing
-            if (empty($data['slug']) && !empty($data['name'])) {
+            
+            // Extract category, destination, and activity IDs
+            $categories = $data['categories'] ?? null;
+            unset($data['categories']);
+            
+            $destinations = $data['destinations'] ?? null;
+            unset($data['destinations']);
+            
+            $activities = $data['activities'] ?? null;
+            unset($data['activities']);
+            
+            // Add user ID if not provided
+            if (!isset($data['user_id'])) {
+                $data['user_id'] = auth()->id();
+            }
+            
+            // Generate slug if not provided
+            if (empty($data['slug'])) {
                 $data['slug'] = Str::slug($data['name']);
             }
             
-            if (empty($data['duration_days'])) {
-                $data['duration_days'] = 1;
+            // Handle featured image upload if provided
+            if (isset($data['featured_image']) && $data['featured_image'] instanceof \Illuminate\Http\UploadedFile) {
+                $tableName = $this->model->getTable();
+                $filePath = 'uploads/' . $tableName . '/featured';
+                $fileData['featured_image'] = $this->customFileUpload($filePath, 'featured_image');
+                $data['featured_image'] = $fileData['featured_image'];
             }
             
-            if (empty($data['regular_price'])) {
-                $data['regular_price'] = 0;
-            }
-    
-            // Create the tour package
-            $tourPackage = $this->model->create($data);
-            Log::info('Tour package created with ID: ' . $tourPackage->id);
-    
-            // Attach categories if any
-            if (!empty($categories)) {
-                $tourPackage->categories()->attach($categories);
-                Log::info('Categories attached: ' . implode(', ', $categories));
-            }
-    
-            // Attach destinations if any
-            if (!empty($destinations)) {
-                $tourPackage->categories()->attach($destinations);
-                Log::info('Destinations attached: ' . implode(', ', $destinations));
-            }
-    
-            // Save attribute values if any
-            if (!empty($attributeValues)) {
-                $this->saveAttributeValues($tourPackage, $attributeValues);
-                Log::info('Attribute values saved: ' . count($attributeValues));
-            }
-    
-            DB::commit();
-            return $tourPackage;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error('Failed to create tour package: ' . $e->getMessage());
-            Log::error($e->getTraceAsString());
-            throw $e; // Re-throw for the controller to handle
-        }
-    }
-
-    public function update(array $data, $id)
-    {
-        try {
-            DB::beginTransaction();
-
-            $tourPackage = $this->getById($id);
-
-            // Extract category, destination, and activity IDs
-            $categories = $data['categories'] ?? [];
-            unset($data['categories']);
-
-            $destinations = $data['destinations'] ?? [];
-            unset($data['destinations']);
-
-            $activities = $data['activities'] ?? [];
-            unset($data['activities']);
-
-            // Extract itinerary data
-            $itinerary = $data['itinerary'] ?? [];
-            unset($data['itinerary']);
-
-            // Extract inclusions and exclusions
-            $inclusions = $data['inclusions'] ?? [];
-            unset($data['inclusions']);
-
-            $exclusions = $data['exclusions'] ?? [];
-            unset($data['exclusions']);
-
-            // Extract all dynamic attributes
-            $attributeValues = [];
-            foreach ($data as $key => $value) {
-                if (strpos($key, 'attribute_') === 0) {
-                    $attributeId = substr($key, strlen('attribute_'));
-                    $attributeValues[$attributeId] = $value;
-                    unset($data[$key]);
+            // Handle gallery images similarly if provided
+            if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
+                $galleryImages = [];
+                $tableName = $this->model->getTable();
+                $filePath = 'uploads/' . $tableName . '/gallery';
+                
+                foreach ($data['gallery_images'] as $index => $galleryImage) {
+                    if ($galleryImage instanceof \Illuminate\Http\UploadedFile) {
+                        $fieldName = 'gallery_images.' . $index;
+                        $imagePath = $this->customFileUpload($filePath, $fieldName);
+                        if ($imagePath) {
+                            $galleryImages[] = $imagePath;
+                        }
+                    }
+                }
+                
+                if (!empty($galleryImages)) {
+                    $data['gallery_images'] = json_encode($galleryImages);
                 }
             }
-
-            // Update the tour package
-            $tourPackage->update($data);
-
-            // Sync categories and destinations
-            if (!empty($categories)) {
+            
+            // Create the tour package
+            $tourPackage = $this->model->create($data);
+            
+            // Sync categories if provided
+            if (is_array($categories)) {
                 $tourPackage->categories()->sync($categories);
             }
-
-            if (!empty($destinations)) {
-                // First detach all destinations
-                $tourPackage->categories()->detach(
-                    $tourPackage->destinations->pluck('id')->toArray()
-                );
-
-                // Then attach new destinations
-                $tourPackage->categories()->attach($destinations);
+            
+            // Sync destinations if provided
+            if (is_array($destinations)) {
+                // Use a proper pivot table name based on your database structure
+                $tourPackage->destinations()->sync($destinations);
             }
-
-            // Delete existing attribute values
-            AttributeValue::where('attributable_id', $tourPackage->id)
-                ->where('attributable_type', get_class($tourPackage))
-                ->delete();
-
-            // Save all dynamic attributes
-            $this->saveAttributeValues($tourPackage, $attributeValues);
-
+            
+            // Sync activities if provided
+            if (is_array($activities)) {
+                $tourPackage->activities()->sync($activities);
+            }
+            
+            // Save attribute values
+            if (!empty($attributeData)) {
+                $this->saveAttributeValues($tourPackage, $attributeData);
+            }
+            
             DB::commit();
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Failed to update tour package: ' . $e->getMessage());
-            Log::error($e->getTraceAsString());
-            throw $e; // Re-throw to see the error during development
-            return false;
+            \Log::error('Failed to create tour package: ' . $e->getMessage());
+            \Log::error($e->getTraceAsString());
+            throw $e;
+        }
+    }
+    
+    public function update(array $data, $id)
+    {
+        DB::beginTransaction();
+        try {
+            // Extract attribute data (all fields starting with 'attribute_')
+            $attributeData = [];
+            foreach ($data as $key => $value) {
+                if (strpos($key, 'attribute_') === 0) {
+                    $attributeId = substr($key, strlen('attribute_'));
+                    $attributeData[$attributeId] = $value;
+                    unset($data[$key]); // Remove from main data array
+                }
+            }
+            
+            // Extract category, destination, and activity IDs
+            $categories = $data['categories'] ?? null;
+            unset($data['categories']);
+            
+            $destinations = $data['destinations'] ?? null;
+            unset($data['destinations']);
+            
+            $activities = $data['activities'] ?? null;
+            unset($data['activities']);
+            
+            $tourPackage = $this->getById($id);
+            
+            // Handle featured image upload if provided
+            if (isset($data['featured_image']) && $data['featured_image'] instanceof \Illuminate\Http\UploadedFile) {
+                $tableName = $this->model->getTable();
+                $filePath = 'uploads/' . $tableName . '/featured';
+                $fileData['featured_image'] = $this->customFileUpload($filePath, 'featured_image');
+                $data['featured_image'] = $fileData['featured_image'];
+            }
+            if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
+                $galleryImages = [];
+                $tableName = $this->model->getTable();
+                $filePath = 'uploads/' . $tableName . '/gallery';
+                
+                foreach ($data['gallery_images'] as $index => $galleryImage) {
+                    if ($galleryImage instanceof \Illuminate\Http\UploadedFile) {
+                        $fieldName = 'gallery_images.' . $index;
+                        $imagePath = $this->customFileUpload($filePath, $fieldName);
+                        if ($imagePath) {
+                            $galleryImages[] = $imagePath;
+                        }
+                    }
+                }
+                
+                if (!empty($galleryImages)) {
+                    $data['gallery_images'] = json_encode($galleryImages);
+                }
+            } else {
+                // If no new gallery images were uploaded, preserve existing ones
+                unset($data['gallery_images']);
+            }
+            // Update the tour package
+            $tourPackage->update($data);
+            
+            // Sync categories if provided
+            if (is_array($categories)) {
+                $tourPackage->categories()->sync($categories);
+            }
+            
+            // Sync destinations if provided
+            if (is_array($destinations)) {
+                $tourPackage->destinations()->sync($destinations);
+            }
+            
+            // Sync activities if provided
+            if (is_array($activities)) {
+                $tourPackage->activities()->sync($activities);
+            }
+            
+            // Update attribute values
+            if (!empty($attributeData)) {
+                // First, remove all existing attribute values
+                $tourPackage->attributeValues()->delete();
+                
+                // Then, add the new ones
+                $this->saveAttributeValues($tourPackage, $attributeData);
+            }
+            
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error('Failed to update tour package: ' . $e->getMessage());
+            \Log::error($e->getTraceAsString());
+            throw $e;
         }
     }
 
     public function getWithAttributes($id)
     {
-        $tourPackage = $this->model->with(['categories', 'user'])->findOrFail($id);
-
-        // Get all attributes for this package
-        $attributes = AttributeValue::where('attributable_id', $tourPackage->id)
-            ->where('attributable_type', get_class($tourPackage))
-            ->with(['packageAttribute', 'packageAttribute.attributeGroup'])
-            ->get();
+        // Load the tour package with its relationships
+        $tourPackage = $this->model->with([
+            'user', 
+            'categories', 
+            'destinations', 
+            'attributeValues.packageAttribute.attributeGroup'
+        ])->findOrFail($id);
         
-        // Group attributes by group
-        $grouped = [];
-        foreach ($attributes as $attribute) {
-            $groupName = $attribute->packageAttribute->attributeGroup->name ?? 'Other';
-            $groupSlug = $attribute->packageAttribute->attributeGroup->slug ?? 'other';
+        // Initialize attribute_groups as an empty array 
+        $tourPackage->attribute_groups = [];
+        
+        // Group attribute values by their attribute groups
+        if ($tourPackage->attributeValues->count() > 0) {
+            $grouped = [];
             
-            if (!isset($grouped[$groupSlug])) {
-                $grouped[$groupSlug] = [
-                    'name' => $groupName,
-                    'attributes' => []
+            foreach ($tourPackage->attributeValues as $value) {
+                if (!$value->packageAttribute || !$value->packageAttribute->attributeGroup) {
+                    continue; // Skip if attribute or group is missing
+                }
+                
+                $group = $value->packageAttribute->attributeGroup;
+                $attribute = $value->packageAttribute;
+                
+                $groupSlug = \Str::slug($group->name);
+                
+                if (!isset($grouped[$groupSlug])) {
+                    $grouped[$groupSlug] = [
+                        'id' => $group->id,
+                        'name' => $group->name,
+                        'attributes' => []
+                    ];
+                }
+                
+                // Get value based on attribute type
+                $attributeValue = $value->getValue();
+                
+                // Log to debug
+                \Log::info("Loaded attribute: {$attribute->name} with value:", [
+                    'id' => $attribute->id,
+                    'type' => $attribute->type,
+                    'value' => $attributeValue,
+                    'value_type' => gettype($attributeValue)
+                ]);
+                
+                // Add attribute to its group
+                $grouped[$groupSlug]['attributes'][] = [
+                    'id' => $attribute->id,
+                    'name' => $attribute->name,
+                    'type' => $attribute->type,
+                    'value' => $attributeValue
                 ];
             }
             
-            $grouped[$groupSlug]['attributes'][] = [
-                'id' => $attribute->packageAttribute->id,
-                'name' => $attribute->packageAttribute->name,
-                'slug' => $attribute->packageAttribute->slug,
-                'type' => $attribute->packageAttribute->type,
-                'value' => $this->getAttributeValue($attribute)
-            ];
+            $tourPackage->attribute_groups = $grouped;
         }
         
-        $tourPackage->attribute_groups = $grouped;
         return $tourPackage;
     }
 
     protected function getAttributeValue($attribute)
     {
         $type = $attribute->packageAttribute->type ?? 'text';
-        
+
         switch ($type) {
             case 'text':
                 return $attribute->text_value;
@@ -353,17 +413,37 @@ class TourPackageRepository implements TourPackageInterface
             if (!$attribute) {
                 continue;
             }
-
+    
             $valueColumn = $this->getValueColumnForType($attribute->type);
-
+    
             // Process value based on type
             $processedValue = $value;
-            if (($attribute->type === 'array' || $attribute->type === 'json') && is_array($value)) {
-                $processedValue = json_encode($value);
+            if ($attribute->type === 'array' || $attribute->type === 'json') {
+                // For array/json types, ensure we always store valid JSON
+                if (is_array($value)) {
+                    // If it's already an array, encode it
+                    $processedValue = json_encode($value);
+                } else if (is_string($value) && !empty($value)) {
+                    // If it's a non-empty string, treat it as a single array item
+                    $processedValue = json_encode([$value]);
+                } else if (empty($value)) {
+                    // If empty, store as empty array
+                    $processedValue = json_encode([]);
+                } else {
+                    // For any other value, wrap it in an array
+                    $processedValue = json_encode([$value]);
+                }
             } elseif ($attribute->type === 'boolean') {
                 $processedValue = filter_var($value, FILTER_VALIDATE_BOOLEAN) ? 1 : 0;
             }
-
+    
+            // Debug the processed value before saving
+            Log::info("Saving attribute #{$attributeId} ({$attribute->name}) of type {$attribute->type}", [
+                'original_value' => $value,
+                'processed_value' => $processedValue,
+                'column' => $valueColumn
+            ]);
+    
             // Create attribute value
             AttributeValue::create([
                 'package_attribute_id' => $attributeId,

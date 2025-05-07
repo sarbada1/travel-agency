@@ -28,7 +28,7 @@
                                     <th>Name</th>
                                     <th>Duration</th>
                                     <th>Price</th>
-                                    <th>Categories</th>
+                                    {{-- <th>Categories</th> --}}
                                     <th>Featured</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -54,17 +54,21 @@
                                                 <span class="text-danger">Sale: {{$package->currency}} {{number_format($package->sale_price, 2)}}</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             @foreach($package->categories as $category)
                                                 <span class="badge bg-info">{{$category->name}}</span>
                                             @endforeach
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             @if($package->is_featured)
                                                 <span class="badge bg-success">Featured</span>
+                                                @else
+                                                <span class="badge bg-danger">Not Featured</span>
+
                                             @endif
                                             @if($package->is_popular)
                                                 <span class="badge bg-warning">Popular</span>
+                                            
                                             @endif
                                         </td>
                                         <td>
